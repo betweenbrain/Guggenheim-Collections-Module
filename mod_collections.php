@@ -24,6 +24,25 @@ $items = $collection->compileCollectionItems();
 // Render module output
 require JModuleHelper::getLayoutPath('mod_collections');
 
+$doc->addScript('http://www.guggenheim.org/modules/mod_yatm/tmpl/js/jquery.carousel.min.js');
+
+$js = '(function ($) {
+            $().ready(function () {
+                $("div.collections").carousel({
+                    dispItems        :' . htmlspecialchars($params->get('dispItems')) . ',
+                    loop             :' . ($params->get('loop') ? 'true' : 'false') . ',
+                    autoSlide        :' . ($params->get('autoSlide') ? 'true' : 'false') . ',
+                    autoSlideInterval:' . htmlspecialchars($params->get('autoSlideInterval')) . ',
+                    btnsPosition     :"' . $params->get('btnsPosition') . '",
+                    nextBtn          : "<a class=\"next\" title=\"Next\">Next</a>",
+                    prevBtn          : "<a class=\"prev\" title=\"Previous\">Previous</a>",
+                });
+            });
+        })(jQuery)';
+$js = preg_replace(array('/\s{2,}+/', '/\t/', '/\n/'), '', $js);
+$doc->addScriptDeclaration($js);
+
+
 /**
  * Load CSS files, first checking for template override of CSS.
  *

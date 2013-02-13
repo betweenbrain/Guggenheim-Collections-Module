@@ -39,42 +39,74 @@
 		       default=""
 		       label="MOD_COLLECTIONS_ENDPOINT_ID_LABEL"
 		       description="MOD_COLLECTIONS_ENDPOINT_ID_DESC"/>
-	<param name="accessKey"
-	       type="text"
-	       default=""
-	       label="MOD_COLLECTIONS_ACCESS_KEY_LABEL"
-	       description="MOD_COLLECTIONS_ACCESS_KEY_DESC"/>
-</params>
-<params group="advanced">
-<param name="cache"
-       type="list"
-       default="0"
-       label="MOD_COLLECTIONS_CACHE_LABEL"
-       description="MOD_COLLECTIONS_CACHE_DESC">
-	<option value="0">No</option>
-	<option value="1">Yes</option>
-</param>
-<param name="cachemaxage"
-       type="text"
-       default="15"
-       label="MOD_COLLECTIONS_CACHEMAXAGE_LABEL"
-       description="MOD_COLLECTIONS_CACHEMAXAGE_DESC"/>
-<param name="moduleclass_sfx"
-       type="text"
-       default=""
-       label="Module Class Suffix"
-       description="PARAMMODULECLASSSUFFIX"/>
-<param name="displaydiagnostic"
-       type="list"
-       default="0"
-       label="MOD_COLLECTIONS_DISPLAYDIAGNOSTIC_LABEL"
-       description="MOD_COLLECTIONS_DISPLAYDIAGNOSTIC_DESC">
-	<option value="0">No</option>
-	<option value="1">Yes</option>
-</param>
-</params>
-<params group="other">
-<param type="spacer"
-       default="Some Label"/>
-</params>
-		</install>
+		<param name="accessKey"
+		       type="text"
+		       default=""
+		       label="MOD_COLLECTIONS_ACCESS_KEY_LABEL"
+		       description="MOD_COLLECTIONS_ACCESS_KEY_DESC"/>
+	</params>
+	<params group="advanced">
+		<param name="dispItems"
+		       type="text"
+		       default="3"
+		       label="Display Items"
+		       description="Number of items to display at once."
+		       size="15"/>
+		<param name="loop"
+		       type="list"
+		       default="1"
+		       label="Loop"
+		       description="If yes, loops the carousel.">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="autoSlide"
+		       type="list"
+		       default="1"
+		       label="Auto Slide"
+		       description="If yes, automatically click the Next button at a given interval">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="autoSlideInterval"
+		       type="text"
+		       default="3000"
+		       label="Auto Slide Interval"
+		       description="The delay between each click using the autoSlide option."
+		       size="15"/>
+		<param name="btnsPosition"
+		       type="list"
+		       default="outside"
+		       label="Button Position"
+		       description="The position of the buttons relative to the carousel container.">
+			<option value="outside">Outside</option>
+			<option value="inside">Inside</option>
+		</param>
+		<param name="cache"
+		       type="list"
+		       default="0"
+		       label="MOD_COLLECTIONS_CACHE_LABEL"
+		       description="MOD_COLLECTIONS_CACHE_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="cachemaxage"
+		       type="text"
+		       default="15"
+		       label="MOD_COLLECTIONS_CACHEMAXAGE_LABEL"
+		       description="MOD_COLLECTIONS_CACHEMAXAGE_DESC"/>
+		<param name="moduleclass_sfx"
+		       type="text"
+		       default=""
+		       label="Module Class Suffix"
+		       description="PARAMMODULECLASSSUFFIX"/>
+		<param name="displaydiagnostic"
+		       type="list"
+		       default="0"
+		       label="MOD_COLLECTIONS_DISPLAYDIAGNOSTIC_LABEL"
+		       description="MOD_COLLECTIONS_DISPLAYDIAGNOSTIC_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+	</params>
+</install>

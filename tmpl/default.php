@@ -2,7 +2,7 @@
 
 /**
  * File       default.php
- * Created    2/12/13 11:59 AM
+ * Created    12/31/12 11:59 AM
  * Author     Matt Thomas
  * Website    http://betweenbrain.com
  * Email      matt@betweenbrain.com
@@ -12,7 +12,10 @@
  */
 
 if ($items) : ?>
+<div class="collections<?php echo $moduleclass_sfx ?>">
+	<ul>
 <?php foreach ($items as $item) : ?>
+		<li>
 	<?php if (isset($item['media'])) : ?>
 		<img src="<?php echo $item['media'] ?>" />
 	<?php endif ?>
@@ -32,7 +35,9 @@ if ($items) : ?>
 	<?php if (isset($item['essay'])) : ?>
 		<p><?php echo $item['essay'] ?></p>
 	<?php endif ?>
+		</li>
 	<?php endforeach ?>
+		</ul>
+</div>
 <?php endif ?>
-
 
