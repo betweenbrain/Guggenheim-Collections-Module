@@ -33,7 +33,7 @@ if ($items) : ?>
 	<?php endif ?>
 
 	<?php if (isset($item['essay'])) : ?>
-		<p><?php echo $item['essay'] ?></p>
+		<div class="essay"><?php echo $item['essay'] ?></div>
 	<?php endif ?>
 		</li>
 	<?php endforeach ?>

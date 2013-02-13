@@ -37,6 +37,7 @@ $js = '(function ($) {
                     nextBtn          : "<a class=\"next\" title=\"Next\">Next</a>",
                     prevBtn          : "<a class=\"prev\" title=\"Previous\">Previous</a>",
                 });
+                $("div.essay").hide();
             });
         })(jQuery)';
 $js = preg_replace(array('/\s{2,}+/', '/\t/', '/\n/'), '', $js);
