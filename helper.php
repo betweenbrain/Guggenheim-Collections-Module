@@ -88,14 +88,20 @@ class modCollectionsHelper {
 		$json       = $this->fetchCollection();
 		$collection = json_decode($json);
 		$item       = NULL;
+
 		if ($collection) {
 			if ($endpoint == 'acquisitions') {
+
 				foreach ($collection->objects->items as $key => $items) {
 
 					if (isset($items->media)) {
 						foreach ($items->media as $media) {
 							$item[$key]['media'] = $media->assets->full->_links->_self->href;
 						}
+					}
+
+					if (isset($items->titles->primary)) {
+						$item[$key]['title'] = $items->titles->primary->title;
 					}
 
 					if (isset($items->constituents[0])) {

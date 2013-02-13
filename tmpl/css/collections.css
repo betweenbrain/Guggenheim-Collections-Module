@@ -10,3 +10,29 @@
  * Copyright  Copyright (C) 2013 betweenbrain llc. All Rights Reserved.
  * License    GNU GPL v3 or later
  */
+
+.collections .carousel-wrap {
+	height : 600px !important;
+}
+
+.collections ul li {
+	list-style-type : none;
+	float           : left;
+	width           : 205px;
+	height          : 580px;
+	position        : relative;
+}
+
+.collections ul li img {
+	max-width      : 205px;
+	display        : block;
+	padding-bottom : 10px;
+	position: absolute;
+	bottom : 120px;
+}
+
+.collections .content {
+	position : absolute;
+	height : 110px;
+	bottom : 0;
+}

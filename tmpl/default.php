@@ -14,30 +14,42 @@
 if ($items) : ?>
 <div class="collections<?php echo $moduleclass_sfx ?>">
 	<ul>
-<?php foreach ($items as $item) : ?>
+		<?php foreach ($items as $item) : ?>
 		<li>
-	<?php if (isset($item['media'])) : ?>
-		<img src="<?php echo $item['media'] ?>" />
-	<?php endif ?>
 
-	<?php if (isset($item['link'])) : ?>
-		<a href="<?php echo $item['link'] ?>"><?php echo $item['link'] ?></a>
-	<?php endif ?>
+			<?php if (isset($item['link'])) : ?>
+			<a href="<?php echo $item['link'] ?>">
+			<?php endif ?>
 
-	<?php if (isset($item['name'])) : ?>
-		<p><?php echo $item['name']['firstname'] . ' ' . $item['name']['middlename'] . ' ' . $item['name']['lastname']?></p>
-	<?php endif ?>
+			<?php if (isset($item['media'])) : ?>
+			<img src="<?php echo $item['media'] ?>" />
+			<?php endif ?>
 
-	<?php if (isset($item['date'])) : ?>
-		<p><?php echo $item['date'] ?></p>
-	<?php endif ?>
+			<?php if (isset($item['link'])) : ?>
+			</a>
+			<?php endif ?>
 
-	<?php if (isset($item['essay'])) : ?>
-		<div class="essay"><?php echo $item['essay'] ?></div>
-	<?php endif ?>
+			<div class="content">
+				<?php if (isset($item['link'])) : ?>
+				<a href="<?php echo $item['link'] ?>"><?php echo $item['title'] ?></a>
+				<?php endif ?>
+
+				<?php if (isset($item['name'])) : ?>
+				<p><?php echo $item['name']['firstname'] . ' ' . $item['name']['middlename'] . ' ' . $item['name']['lastname']?></p>
+				<?php endif ?>
+
+				<?php if (isset($item['date'])) : ?>
+				<p class="date"><?php echo $item['date'] ?></p>
+				<?php endif ?>
+
+				<?php if (isset($item['link'])) : ?>
+				<a class="more" href="<?php echo $item['link'] ?>">More</a>
+				<?php endif ?>
+			</div>
+
 		</li>
-	<?php endforeach ?>
-		</ul>
+		<?php endforeach ?>
+	</ul>
 </div>
 <?php endif ?>
 
