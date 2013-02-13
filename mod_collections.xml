@@ -23,48 +23,58 @@
 
 	<params addpath="/modules/mod_collections/elements">
 		<param type="diagnostic"/>
-		<param name="sometext"
-		       type="text"
-		       default=""
-		       label="MOD_COLLECTIONS_SOMETEXT_LABEL"
-		       description="MOD_COLLECTIONS_SOMETEXT_DESC"
-		       size="15"/>
-		<param name="accessKey"
-		       type="text"
-		       default=""
-		       label="MOD_COLLECTIONS_ACCESS_KEY_LABEL"
-		       description="MOD_COLLECTIONS_ACCESS_KEY_DESC"/>
-	</params>
-	<params group="advanced">
-		<param name="cache"
+		<param name="endpoint"
 		       type="list"
-		       default="0"
-		       label="MOD_COLLECTIONS_CACHE_LABEL"
-		       description="MOD_COLLECTIONS_CACHE_DESC">
-			<option value="0">No</option>
-			<option value="1">Yes</option>
+		       default="acquisitions"
+		       label="MOD_COLLECTIONS_ENDPOINT_LABEL"
+		       description="MOD_COLLECTIONS_ENDPOINT_DESC">
+			<option value="acquisitions">List Acquisitions</option>
+			<option value="exhibitions">List Exhibitions</option>
+			<option value="movements">List Movements</option>
+			<option value="objects">List Objects</option>
+			<option value="sites">List Sites</option>
 		</param>
-		<param name="cachemaxage"
-		       type="text"
-		       default="15"
-		       label="MOD_COLLECTIONS_CACHEMAXAGE_LABEL"
-		       description="MOD_COLLECTIONS_CACHEMAXAGE_DESC"/>
-		<param name="moduleclass_sfx"
+		<param name="endpointID"
 		       type="text"
 		       default=""
-		       label="Module Class Suffix"
-		       description="PARAMMODULECLASSSUFFIX"/>
-		<param name="displaydiagnostic"
-		       type="list"
-		       default="0"
-		       label="MOD_COLLECTIONS_DISPLAYDIAGNOSTIC_LABEL"
-		       description="MOD_COLLECTIONS_DISPLAYDIAGNOSTIC_DESC">
-			<option value="0">No</option>
-			<option value="1">Yes</option>
-		</param>
-	</params>
-	<params group="other">
-		<param type="spacer"
-		       default="Some Label"/>
-	</params>
-</install>
+		       label="MOD_COLLECTIONS_ENDPOINT_ID_LABEL"
+		       description="MOD_COLLECTIONS_ENDPOINT_ID_DESC"/>
+	<param name="accessKey"
+	       type="text"
+	       default=""
+	       label="MOD_COLLECTIONS_ACCESS_KEY_LABEL"
+	       description="MOD_COLLECTIONS_ACCESS_KEY_DESC"/>
+</params>
+<params group="advanced">
+<param name="cache"
+       type="list"
+       default="0"
+       label="MOD_COLLECTIONS_CACHE_LABEL"
+       description="MOD_COLLECTIONS_CACHE_DESC">
+	<option value="0">No</option>
+	<option value="1">Yes</option>
+</param>
+<param name="cachemaxage"
+       type="text"
+       default="15"
+       label="MOD_COLLECTIONS_CACHEMAXAGE_LABEL"
+       description="MOD_COLLECTIONS_CACHEMAXAGE_DESC"/>
+<param name="moduleclass_sfx"
+       type="text"
+       default=""
+       label="Module Class Suffix"
+       description="PARAMMODULECLASSSUFFIX"/>
+<param name="displaydiagnostic"
+       type="list"
+       default="0"
+       label="MOD_COLLECTIONS_DISPLAYDIAGNOSTIC_LABEL"
+       description="MOD_COLLECTIONS_DISPLAYDIAGNOSTIC_DESC">
+	<option value="0">No</option>
+	<option value="1">Yes</option>
+</param>
+</params>
+<params group="other">
+<param type="spacer"
+       default="Some Label"/>
+</params>
+		</install>

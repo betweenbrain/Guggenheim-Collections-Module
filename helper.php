@@ -2,7 +2,7 @@
 
 /**
  * File       helper.php
- * Created    12/31/12 12:25 PM
+ * Created    2/12/13 12:25 PM
  * Author     Matt Thomas
  * Website    http://betweenbrain.com
  * Email      matt@betweenbrain.com
@@ -13,127 +13,116 @@
 
 class modCollectionsHelper {
 
-    /**
-     * Module parameters
-     * @var    boolean
-     * @since  0.0
-     */
-    protected $params;
+	/**
+	 * Module parameters
+	 *
+	 * @var    boolean
+	 * @since  0.0
+	 */
+	protected $params;
 
-    /**
-     * Constructor
-     *
-     * @param   JRegistry  $params  The module parameters
-     *
-     * @since  0.0
-     */
-    public function __construct($params) {
-        // Store the module params
-        $this->params = $params;
-    }
+	/**
+	 * Constructor
+	 *
+	 * @param   JRegistry  $params  The module parameters
+	 *
+	 * @since  1.0
+	 */
+	public function __construct($params) {
+		// Store the module params
+		$this->params = $params;
+	}
 
-    /**
-     * Protected function to do something. Protected as it is only used within this class.
-     *
-     * @param $result
-     * @return array
-     * @since  0.0
-     */
-    protected function bar($result) {
+	/**
+	 * Protected function to do something. Protected as it is only used within this class.
+	 *
+	 * @internal param $result
+	 * @return array
+	 * @since    1.0
+	 */
+	protected function fetchCollection() {
 
-        // Remove double spaces, tabs, new lines.
-        $result = preg_replace(array('/\s{2,}+/', '/\t/', '/\n/'), '', $result);
+		// Get parameters from the module's configuration
+		$accessKey  = htmlspecialchars($this->params->get('accessKey'));
+		$endpoint   = $this->params->get('endpoint');
+		$endpointID = $this->params->get('endpointID');
 
-        // Make vowels uppercase
-        $result = str_replace(array('a', 'e', 'i', 'o', 'u'), array('A', 'E', 'I', 'O', 'U'), $result);
+		// Build the search URL
+		$url = 'http://api.guggenheim.org/collections/' . $endpoint;
+		$url .= $endpointID ? '/' . $endpointID : NULL;
+		$url .= '?key=' . $accessKey;
 
-        return $result;
-    }
+		$curl = curl_init();
 
-    /**
-     * Function to compile data cache file
-     * @param $json
-     * @param string $name
-     * @return bool
-     * @since  0.0
-     */
-    function compileCache($json, $name = "raw") {
-        $cacheFile = JPATH_CACHE . '/mod_collections/skeleton_' . $name . '_cache.json';
-        // Don't compile cache if json has no data.
-        if (json_decode($json)) {
-            file_put_contents($cacheFile, $json);
-            if (file_exists($cacheFile)) {
+		curl_setopt_array($curl, Array(
+			CURLOPT_USERAGENT      => "JoomlaCollectionsModule",
+			CURLOPT_HTTPHEADER     => array('Accept: application/vnd.guggenheim.collection+json'),
+			CURLOPT_URL            => $url,
+			CURLOPT_TIMEOUT        => 300,
+			CURLOPT_CONNECTTIMEOUT => 60,
+			CURLOPT_RETURNTRANSFER => TRUE,
+			CURLOPT_SSL_VERIFYHOST => FALSE,
+			CURLOPT_SSL_VERIFYPEER => FALSE,
+			CURLOPT_ENCODING       => 'UTF-8'
+		));
 
-                return TRUE;
-            }
-        }
+		$json = curl_exec($curl);
+		$data = json_decode($json, TRUE);
 
-        return FALSE;
-    }
+		if ($data) {
+			return $json;
+		}
 
-    /**
-     * Function to fetch cached
-     * @param string $name
-     * @return bool|mixed
-     * @since  0.0
-     */
-    function fetchCache($name = "raw") {
-        // If cache is enabled, and there is a cache file, use it.
-        if ($this->params->get('cache') && $this->validateCache($name)) {
-            $json = file_get_contents(JPATH_CACHE . '/mod_collections/skeleton_' . $name . '_cache.json');
-            // When json_decode is TRUE, returned objects will be converted into associative arrays. http://php.net/manual/en/function.json-decode.php
-            $data = json_decode($json, TRUE);
+		return FALSE;
+	}
 
-            return $data;
-        }
+	/**
+	 * Function to compile collection items for rendering
+	 *
+	 * @internal param $json
+	 * @return array
+	 * @since    1.0
+	 */
+	function compileCollectionItems() {
+		$endpoint   = $this->params->get('endpoint');
+		$json       = $this->fetchCollection();
+		$collection = json_decode($json);
+		$item       = NULL;
+		if ($collection) {
+			if ($endpoint == 'acquisitions') {
+				foreach ($collection->objects->items as $key => $items) {
 
-        return FALSE;
-    }
+					if (isset($items->media)) {
+						foreach ($items->media as $media) {
+							$item[$key]['media'] = $media->assets->full->_links->_self->href;
+						}
+					}
 
-    /**
-     * Function foo
-     * @return bool
-     * @since  0.0
-     */
-    function foo() {
-        $result = htmlspecialchars($this->params->get('sometext'));
+					if (isset($items->constituents[0])) {
+						foreach ($items->constituents as $constituents) {
+							if ($constituents->role == "Artist") {
+								$item[$key]['name'] = array('firstname' => $constituents->constituent->firstname, 'middlename' => $constituents->constituent->middlename, 'lastname' => $constituents->constituent->lastname);
+							}
+						}
+					}
 
-        return $this->bar($result);
-    }
+					if (isset($items->_links->web)) {
+						$item[$key]['link'] = $items->_links->web->href;
+					}
 
-    /**
-     * Function to validate cache file
-     * @param string $name
-     * @return bool
-     * @since  0.0
-     */
-    function validateCacheAge($name = "raw") {
-        $cacheFile = JPATH_CACHE . '/mod_collections/skeleton_' . $name . '_cache.json';
-        // If caching is enabled
-        if ($this->params->get('cache') && file_exists($cacheFile)) {
-            // Convert user input max cache age to minutes
-            $cacheMaxAge = ($this->params->get('cachemaxage', 15)) * 60;
-            // Get age of cache file
-            $cacheAge = filemtime($cacheFile);
-            // Check if cache has expired
-            if ((time() - $cacheAge) >= $cacheMaxAge) {
-                // If it's stale, delete it and...
-                unlink($cacheFile);
+					if (isset($items->dates->display)) {
+						$item[$key]['date'] = $items->dates->display;
+					}
 
-                // ... return false as cache isn't valid
-                return FALSE;
-            }
+					if (isset($items->essay)) {
+						$item[$key]['essay'] = $items->essay;
+					}
+				}
+			}
 
-            // Cache is valid
-            return TRUE;
-        }
+			return $item;
+		}
 
-        // Remove old cache file if caching is turned off
-        if (!$this->params->get('cache') && file_exists($cacheFile)) {
-            unlink($cacheFile);
-        }
-
-        return FALSE;
-    }
-
+		return FALSE;
+	}
 }

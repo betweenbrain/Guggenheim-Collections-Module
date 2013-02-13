@@ -2,7 +2,7 @@
 
 /**
  * File       mod_collections.php
- * Created    12/31/12 12:04 PM
+ * Created    2/12/13 12:04 PM
  * Author     Matt Thomas
  * Website    http://betweenbrain.com
  * Email      matt@betweenbrain.com
@@ -18,9 +18,9 @@ $app = JFactory::getApplication();
 // Global document object
 $doc = JFactory::getDocument();
 // Instantiate our class
-$skeleton = new modCollectionsHelper($params);
+$collection = new modCollectionsHelper($params);
 // Call the foo function
-$foo = $skeleton->foo();
+$items = $collection->compileCollectionItems();
 // Render module output
 require JModuleHelper::getLayoutPath('mod_collections');
 
@@ -33,8 +33,8 @@ require JModuleHelper::getLayoutPath('mod_collections');
  * otherwise the scheme, host and port are prepended to the path.
  */
 
-if (file_exists(JPATH_SITE . '/templates/' . $app->getTemplate() . '/css/mod_collections/skeleton.css')) {
-    $doc->addStyleSheet(JURI::base(TRUE) . '/templates/' . $app->getTemplate() . '/css/mod_collections/skeleton.css');
-} elseif (file_exists(JPATH_SITE . '/modules/mod_collections/tmpl/css/skeleton.css')) {
-    $doc->addStyleSheet(JURI::base(TRUE) . '/modules/mod_collections/tmpl/css/skeleton.css');
+if (file_exists(JPATH_SITE . '/templates/' . $app->getTemplate() . '/css/mod_collections/collections.css')) {
+	$doc->addStyleSheet(JURI::base(TRUE) . '/templates/' . $app->getTemplate() . '/css/mod_collections/collections.css');
+} elseif (file_exists(JPATH_SITE . '/modules/mod_collections/tmpl/css/collections.css')) {
+	$doc->addStyleSheet(JURI::base(TRUE) . '/modules/mod_collections/tmpl/css/collections.css');
 }
