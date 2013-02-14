@@ -30,21 +30,18 @@ if ($items) : ?>
 			<?php endif ?>
 
 			<div class="content">
-
-				<?php if (isset($item['link'])) : ?>
-				<a href="<?php echo $item['link'] ?>">
-				<?php endif ?>
-
-				<?php if (isset($item['title'])) : ?>
 				<?php echo $item['title'] ?>
-				<?php endif ?>
-
-				<?php if (isset($item['link'])) : ?>
-				</a>
-				<?php endif ?>
 
 				<?php if (isset($item['name'])) : ?>
-				<a href="<?php echo $item['bioUrl'] ?>"><?php echo $item['name'] ?></a>
+					<?php if (isset($item['bioUrl'])) : ?>
+						<a href="<?php echo $item['bioUrl'] ?>">
+					<? endif ?>
+
+				<?php echo $item['name'] ?>
+
+					<?php if (isset($item['bioUrl'])) : ?>
+					</a>
+					<? endif ?>
 				<?php endif ?>
 
 				<?php if (isset($item['date'])) : ?>
