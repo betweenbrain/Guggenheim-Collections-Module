@@ -89,6 +89,8 @@ class modCollectionsHelper {
 		$collection = json_decode($json);
 		$item       = NULL;
 
+		//die('<pre>' . print_r($collection, TRUE) . '</pre>');
+
 		if ($collection) {
 			if ($endpoint == 'acquisitions') {
 
@@ -107,10 +109,12 @@ class modCollectionsHelper {
 					if (isset($items->constituents[0])) {
 						foreach ($items->constituents as $constituents) {
 							if ($constituents->role == "Artist") {
-								$item[$key]['name'] = array('firstname' => $constituents->constituent->firstname, 'middlename' => $constituents->constituent->middlename, 'lastname' => $constituents->constituent->lastname);
+								$item[$key]['name'] = $constituents->constituent->display;
+								$item[$key]['bioUrl'] = 'http://www.guggenheim.org/new-york/collections/collection-online/show-full/bio/?artist_name='.str_replace(' ','%20',$constituents->constituent->display);
 							}
 						}
 					}
+
 
 					if (isset($items->_links->web)) {
 						$item[$key]['link'] = $items->_links->web->href;
