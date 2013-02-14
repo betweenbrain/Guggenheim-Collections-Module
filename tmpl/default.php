@@ -30,12 +30,10 @@ if ($items) : ?>
 			<?php endif ?>
 
 			<div class="content">
-				<?php if (isset($item['link'])) : ?>
-				<a href="<?php echo $item['link'] ?>"><?php echo $item['title'] ?></a>
-				<?php endif ?>
+				<?php echo $item['title'] ?>
 
 				<?php if (isset($item['name'])) : ?>
-				<p><?php echo $item['name']['firstname'] . ' ' . $item['name']['middlename'] . ' ' . $item['name']['lastname']?></p>
+				<a href="<?php echo $item['bioUrl'] ?>"><?php echo $item['name'] ?></a>
 				<?php endif ?>
 
 				<?php if (isset($item['date'])) : ?>
