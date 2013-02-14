@@ -21,18 +21,27 @@
 	width           : 205px;
 	height          : 580px;
 	position        : relative;
+	margin-right    : 27px;
+}
+
+.collections ul li a {
+	display : block;
+}
+
+.collections ul li a.more {
+	float : left;
 }
 
 .collections ul li img {
 	max-width      : 205px;
 	display        : block;
 	padding-bottom : 10px;
-	position: absolute;
-	bottom : 120px;
+	position       : absolute;
+	bottom         : 120px;
 }
 
 .collections .content {
 	position : absolute;
-	height : 110px;
-	bottom : 0;
+	height   : 110px;
+	bottom   : 0;
 }
