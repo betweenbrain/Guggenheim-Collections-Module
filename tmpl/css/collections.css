@@ -15,6 +15,10 @@
 	height : 600px !important;
 }
 
+.collections {
+	outline : 0;
+}
+
 .collections ul li {
 	list-style-type : none;
 	float           : left;
