@@ -94,40 +94,41 @@ class modCollectionsHelper {
 		if ($collection) {
 			if ($endpoint == 'acquisitions') {
 
-				foreach ($collection->objects->items as $key => $items) {
+				if (isset($collection->objects->items)) {
 
-					if (isset($items->media)) {
-						foreach ($items->media as $media) {
-							$item[$key]['media'] = $media->assets->full->_links->_self->href;
+					foreach ($collection->objects->items as $key => $items) {
+
+						if (isset($items->media)) {
+							foreach ($items->media as $media) {
+								$item[$key]['media'] = $media->assets->full->_links->_self->href;
+							}
 						}
-					}
+						if (isset($items->titles->primary)) {
+							$item[$key]['title'] = $items->titles->primary->title;
+						}
 
-					if (isset($items->titles->primary)) {
-						$item[$key]['title'] = $items->titles->primary->title;
-					}
-
-					if (isset($items->constituents[0])) {
-						foreach ($items->constituents as $constituents) {
-							if ($constituents->role == "Artist") {
-								$item[$key]['name'] = $constituents->constituent->display;
-								if($constituents->constituent->has_bio == '1') {
-									$item[$key]['bioUrl'] = 'http://www.guggenheim.org/new-york/collections/collection-online/show-full/bio/?artist_name='.str_replace(' ','%20',$constituents->constituent->display);
+						if (isset($items->constituents[0])) {
+							foreach ($items->constituents as $constituents) {
+								if ($constituents->role == "Artist") {
+									$item[$key]['name'] = $constituents->constituent->display;
+									if ($constituents->constituent->has_bio == '1') {
+										$item[$key]['bioUrl'] = 'http://www.guggenheim.org/new-york/collections/collection-online/show-full/bio/?artist_name=' . str_replace(' ', '%20', $constituents->constituent->display);
+									}
 								}
 							}
 						}
-					}
 
+						if (isset($items->_links->web)) {
+							$item[$key]['link'] = $items->_links->web->href;
+						}
 
-					if (isset($items->_links->web)) {
-						$item[$key]['link'] = $items->_links->web->href;
-					}
+						if (isset($items->dates->display)) {
+							$item[$key]['date'] = $items->dates->display;
+						}
 
-					if (isset($items->dates->display)) {
-						$item[$key]['date'] = $items->dates->display;
-					}
-
-					if (isset($items->essay)) {
-						$item[$key]['essay'] = $items->essay;
+						if (isset($items->essay)) {
+							$item[$key]['essay'] = $items->essay;
+						}
 					}
 				}
 			}
