@@ -20,10 +20,9 @@ $doc = JFactory::getDocument();
 // Instantiate our class
 $collection = new modCollectionsHelper($params);
 // Call the foo function
-$items = $collection->compileCollectionItems();
-
+$items = $collection->fetchCollectionItems();
+// Module class suiffix
 $moduleclass_sfx = $params->get('moduleclass_sfx');
-
 // Render module output
 require JModuleHelper::getLayoutPath('mod_collections');
 

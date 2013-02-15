@@ -80,12 +80,13 @@ class modCollectionsHelper {
 	 * Function to compile collection items for rendering
 	 *
 	 * @internal param $json
+	 * @param $json
 	 * @return array
 	 * @since    1.0
 	 */
-	function compileCollectionItems() {
+	function compileCollectionItems($json) {
 		$endpoint   = $this->params->get('endpoint');
-		$json       = $this->fetchCollection();
+		//$json       = $this->fetchCollection();
 		$collection = json_decode($json);
 		$item       = NULL;
 
@@ -105,7 +106,7 @@ class modCollectionsHelper {
 						}
 						if (isset($items->titles->primary)) {
 							$item[$key]['title'] = $items->titles->primary->title;
-							if(strlen($item[$key]['title']) >= '100') {
+							if (strlen($item[$key]['title']) >= '100') {
 								$item[$key]['title'] = substr($item[$key]['title'], 0, 100) . '...';
 							}
 						}
@@ -140,5 +141,70 @@ class modCollectionsHelper {
 		}
 
 		return FALSE;
+	}
+
+	/**
+	 * Function to fetch collection items
+	 *
+	 * @since  1.0
+	 */
+	function fetchCollectionItems() {
+		$cache = JPATH_CACHE . '/mod_collections/objects.json';
+		if ($this->params->get('cache') && $this->validateCache($cache)) {
+			$json  = file_get_contents($cache);
+			$items = $this->compileCollectionItems($json);
+		} else {
+			$json = $this->fetchCollection();
+			if ($json) {
+				$items = $this->compileCollectionItems($json);
+				if ($this->params->get('cache')) {
+					$this->compileCache($json, $cache);
+				}
+				if (!$this->params->get('cache')) {
+					$this->validateCache($cache);
+				}
+			} else {
+				return FALSE;
+			}
+		}
+
+		return $items;
+	}
+
+	/**
+	 * Function to compile cache file
+	 *
+	 * @since  1.0
+	 */
+	protected function compileCache($json, $cache) {
+		if (json_decode($json)) {
+			file_put_contents($cache, $json);
+			if (file_exists($cache)) {
+				return TRUE;
+			}
+		}
+	}
+
+	/**
+	 * Function to validate cache file
+	 *
+	 * @since  1.0
+	 */
+	function validateCache($cache) {
+		if ($this->params->get('cache')) {
+			if (file_exists($cache)) {
+				$cacheTime = ($this->params->get('cachetime', 15)) * 60;
+				$cacheAge  = filemtime($cache);
+				if ((time() - $cacheAge) >= $cacheTime) {
+					unlink($cache);
+
+					return FALSE;
+				}
+
+				return TRUE;
+			}
+		} elseif (!$this->params->get('cache') && file_exists($cache)) {
+			unlink($cache);
+		}
 	}
 }
