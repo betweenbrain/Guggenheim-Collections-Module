@@ -11,15 +11,19 @@
  * License    GNU GPL v3 or later
  */
 
-.collections .carousel-wrap {
-	height : 600px !important;
+/*.sd-strip-container {
+	height   : 600px;
+	width    : 902px;
+	overflow : hidden;
+	outline  : 0;
 }
 
-.collections {
-	outline : 0;
+.sd-strip-container .sd-strip {
+	width : 12000px;
 }
 
-.collections ul li {
+
+.sd-strip-container ul li {
 	list-style-type : none;
 	float           : left;
 	width           : 205px;
@@ -28,15 +32,15 @@
 	margin-right    : 27px;
 }
 
-.collections ul li a {
+.sd-strip-container ul li a {
 	display : block;
 }
 
-.collections ul li a.more {
+.sd-strip-container ul li a.more {
 	float : left;
 }
 
-.collections ul li img {
+.sd-strip-container ul li img {
 	max-width      : 205px;
 	display        : block;
 	padding-bottom : 10px;
@@ -44,8 +48,8 @@
 	bottom         : 120px;
 }
 
-.collections .content {
+.sd-strip-container .content {
 	position : absolute;
 	height   : 110px;
 	bottom   : 0;
-}
+}*/

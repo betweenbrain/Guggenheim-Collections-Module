@@ -89,7 +89,7 @@ class modCollectionsHelper {
 		$collection = json_decode($json);
 		$item       = NULL;
 
-		die('<pre>' . print_r($collection, TRUE) . '</pre>');
+		//die('<pre>' . print_r($collection, TRUE) . '</pre>');
 
 		if ($collection) {
 			if ($endpoint == 'acquisitions') {
