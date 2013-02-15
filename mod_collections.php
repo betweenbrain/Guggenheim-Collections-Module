@@ -31,18 +31,15 @@ $js = '<script type="text/javascript">
 (function ($) {
 	$().ready(function () {
 		$(".sd-strip-container").StripDeck({
-			autoPlay       : true,
+			autoPlay       : false,
 			speed          : 1000,
-			transitionSpeed: 500,
-			autoResume     : true
+			transitionSpeed: 500
 		});
 	});
 })(jQuery)
 </script>';
 
 $doc->addCustomTag($js);
-
-
 
 /**
  * Load CSS files, first checking for template override of CSS.
