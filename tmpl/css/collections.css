@@ -11,45 +11,48 @@
  * License    GNU GPL v3 or later
  */
 
-/*.sd-strip-container {
+.collections {
 	height   : 600px;
 	width    : 902px;
 	overflow : hidden;
 	outline  : 0;
+	position : relative;
 }
 
-.sd-strip-container .sd-strip {
-	width : 12000px;
+.collections .sd-strip-controls {
+	position : absolute;
+	top      : 0;
+	right    : 0;
+	z-index  : 2;
 }
 
-
-.sd-strip-container ul li {
-	list-style-type : none;
-	float           : left;
-	width           : 205px;
-	height          : 580px;
-	position        : relative;
-	margin-right    : 27px;
+div.gugg-rotator-container .sd-strip li .buffer {
+	width    : 235px;
+	height   : 600px;
+	position : relative;
 }
 
-.sd-strip-container ul li a {
+div.gugg-rotator-container .sd-strip li .buffer a {
 	display : block;
 }
 
-.sd-strip-container ul li a.more {
+div.gugg-rotator-container .sd-strip li .buffer a.more {
 	float : left;
 }
 
-.sd-strip-container ul li img {
+div.gugg-rotator-container .sd-strip li .buffer img {
 	max-width      : 205px;
 	display        : block;
 	padding-bottom : 10px;
 	position       : absolute;
 	bottom         : 120px;
+	left           : 0;
 }
 
-.sd-strip-container .content {
-	position : absolute;
-	height   : 110px;
-	bottom   : 0;
-}*/
+div.gugg-rotator-container .sd-strip li .buffer .content {
+	position  : absolute;
+	max-width : 205px;
+	height    : 110px;
+	bottom    : 0;
+	left      : 0;
+}

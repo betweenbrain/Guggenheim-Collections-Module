@@ -27,17 +27,21 @@ $moduleclass_sfx = $params->get('moduleclass_sfx');
 // Render module output
 require JModuleHelper::getLayoutPath('mod_collections');
 
-$js = '(function ($) {
-    $().ready(function () {
-        $(".sd-strip-container").StripDeck({
-            autoPlay: true,
-            transitionSpeed: 500,
-        });
+$js = '<script type="text/javascript">
+(function ($) {
+	$().ready(function () {
+		$(".sd-strip-container").StripDeck({
+			autoPlay       : true,
+			speed          : 1000,
+			transitionSpeed: 500,
+			autoResume     : true
+		});
 	});
-})(jQuery)';
+})(jQuery)
+</script>';
 
-//$js = preg_replace(array('/\s{2,}+/', '/\t/', '/\n/'), '', $js);
-$doc->addScriptDeclaration($js);
+$doc->addCustomTag($js);
+
 
 
 /**
