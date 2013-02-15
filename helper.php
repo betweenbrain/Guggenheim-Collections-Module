@@ -105,6 +105,9 @@ class modCollectionsHelper {
 						}
 						if (isset($items->titles->primary)) {
 							$item[$key]['title'] = $items->titles->primary->title;
+							if(strlen($item[$key]['title']) >= '100') {
+								$item[$key]['title'] = substr($item[$key]['title'], 0, 100) . '...';
+							}
 						}
 
 						if (isset($items->constituents[0])) {
