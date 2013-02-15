@@ -46,42 +46,6 @@
 		       description="MOD_COLLECTIONS_ACCESS_KEY_DESC"/>
 	</params>
 	<params group="advanced">
-		<param name="dispItems"
-		       type="text"
-		       default="3"
-		       label="MOD_COLLECTIONS_DISPLAY_ITEMS_LABEL"
-		       description="MOD_COLLECTIONS_DISPLAY_ITEMS_DESC"
-		       size="15"/>
-		<param name="loop"
-		       type="list"
-		       default="1"
-		       label="MOD_COLLECTIONS_LOOP_LABEL"
-		       description="MOD_COLLECTIONS_LOOP_DESC">
-			<option value="0">No</option>
-			<option value="1">Yes</option>
-		</param>
-		<param name="autoSlide"
-		       type="list"
-		       default="1"
-		       label="MOD_COLLECTIONS_AUTO_SLIDE_LABEL"
-		       description="MOD_COLLECTIONS_AUTO_SLIDE_DESC">
-			<option value="0">No</option>
-			<option value="1">Yes</option>
-		</param>
-		<param name="autoSlideInterval"
-		       type="text"
-		       default="3000"
-		       label="MOD_COLLECTIONS_AUTO_SLIDE_INTERVAL_LABEL"
-		       description="MOD_COLLECTIONS_AUTO_SLIDE_INTERVAL_DESC"
-		       size="15"/>
-		<param name="btnsPosition"
-		       type="list"
-		       default="outside"
-		       label="MOD_COLLECTIONS_BUTTON_POSITION_LABEL"
-		       description="MOD_COLLECTIONS_BUTTON_POSITION_DESC">
-			<option value="outside">Outside</option>
-			<option value="inside">Inside</option>
-		</param>
 		<param name="cache"
 		       type="list"
 		       default="0"
