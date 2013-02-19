@@ -15,8 +15,8 @@ if ($items) : ?>
 <div class="collections<?php echo $moduleclass_sfx ?>">
 	<div class="sd-strip-controls-container">
 		<div class="sd-strip-controls">
-			<img class="control sd-forward" src="http://guggenheim.org/templates/guggenheim_ubs_map_portal/images/right-arrow.png" alt="Forward" />
-			<img class="control sd-back" src="http://guggenheim.org/templates/guggenheim_ubs_map_portal/images/left-arrow.png" alt="Back" />
+			<img class="control sd-forward" src="http://www.guggenheim.org/templates/guggenheim_ubs_map_portal/images/right-arrow.png" alt="Forward" />
+			<img class="control sd-back" src="http://www.guggenheim.org/templates/guggenheim_ubs_map_portal/images/left-arrow.png" alt="Back" />
 		</div>
 		<div class="sd-strip-container">
 			<ul class="sd-strip">
