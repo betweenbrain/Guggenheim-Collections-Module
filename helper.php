@@ -101,13 +101,20 @@ class modCollectionsHelper {
 
 						if (isset($items->media)) {
 							foreach ($items->media as $media) {
-								$item[$key]['media']  = $media->assets->full->_links->_self->href;
-								$width                = $media->assets->full->width;
-								$height               = $media->assets->full->height;
-								$height               = round($height * (205 / $width));
-								$item[$key]['height'] = $height;
+								$item[$key]['media'] = $media->assets->full->_links->_self->href;
+								$imageWidth          = $media->assets->full->width;
+								$imageHeight         = $media->assets->full->height;
+								$imageMaxWidth       = $this->params->get('imageMaxWidth');
+								$imageMaxHeight      = $this->params->get('imageMaxHeight');
+
+								if (($imageWidth > $imageMaxWidth) || ($imageHeight > $imageMaxHeight)) {
+									$scale                = ($imageWidth > $imageHeight) ? ($imageMaxWidth / $imageWidth) : ($imageMaxHeight / $imageHeight);
+									$item[$key]['width']  = round($imageWidth * $scale);
+									$item[$key]['height'] = round($imageHeight * $scale);
+								}
 							}
 						}
+
 						if (isset($items->titles->primary)) {
 							$item[$key]['title'] = $items->titles->primary->title;
 							$limit               = $this->params->get('titleLimit');
@@ -184,13 +191,16 @@ class modCollectionsHelper {
 	 *
 	 * @since  1.0
 	 */
-	protected function compileCache($json, $cache) {
+	protected
+	function compileCache($json, $cache) {
 		if (json_decode($json)) {
 			file_put_contents($cache, $json);
 			if (file_exists($cache)) {
 				return TRUE;
 			}
 		}
+
+		return FALSE;
 	}
 
 	/**
@@ -214,5 +224,7 @@ class modCollectionsHelper {
 		} elseif (!$this->params->get('cache') && file_exists($cache)) {
 			unlink($cache);
 		}
+
+		return FALSE;
 	}
 }

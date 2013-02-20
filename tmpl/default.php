@@ -28,7 +28,7 @@ if ($items) : ?>
 						<?php endif ?>
 
 					<?php if (isset($item['media'])) : ?>
-					<img src="<?php echo $item['media'] ?>" width="205" height="<?php echo $item['height'] ?>">
+					<img src="<?php echo $item['media'] ?>" width="<?php echo $item['width'] ?>" height="<?php echo $item['height'] ?>">
 					<?php endif ?>
 
 					<?php if (isset($item['link'])) : ?>
