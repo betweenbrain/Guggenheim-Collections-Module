@@ -85,12 +85,9 @@ class modCollectionsHelper {
 	 * @since    1.0
 	 */
 	function compileCollectionItems($json) {
-		$endpoint = $this->params->get('endpoint');
-		//$json       = $this->fetchCollection();
+		$endpoint   = $this->params->get('endpoint');
 		$collection = json_decode($json);
 		$item       = NULL;
-
-		//die('<pre>' . print_r($collection, TRUE) . '</pre>');
 
 		if ($collection) {
 			if ($endpoint == 'acquisitions') {
@@ -191,8 +188,7 @@ class modCollectionsHelper {
 	 *
 	 * @since  1.0
 	 */
-	protected
-	function compileCache($json, $cache) {
+	protected function compileCache($json, $cache) {
 		if (json_decode($json)) {
 			file_put_contents($cache, $json);
 			if (file_exists($cache)) {
