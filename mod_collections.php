@@ -26,6 +26,11 @@ $moduleclass_sfx = $params->get('moduleclass_sfx');
 // Render module output
 require JModuleHelper::getLayoutPath('mod_collections');
 
+$imageMaxWidth  = $params->get('imageMaxWidth');
+$imageMaxHeight = $params->get('imageMaxHeight');
+$css            = '.collections .sd-strip li img { max-width: ' . $imageMaxWidth . 'px; max-height: ' . $imageMaxHeight . 'px;}';
+$doc->addStyleDeclaration($css);
+
 /**
  * Load CSS files, first checking for template override of CSS.
  *
