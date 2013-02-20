@@ -115,8 +115,6 @@ class modCollectionsHelper {
 								preg_match("/(\S+\s*){0,$limit}/", $item[$key]['title'], $matches);
 								if ($matches[0] != $item[$key]['title']) {
 									$item[$key]['title'] = trim($matches[0]) . '&hellip;';
-								} else {
-									$item[$key]['title'] = trim($matches[0]);
 								}
 							}
 						}
