@@ -22,45 +22,43 @@ if ($items) : ?>
 			<ul class="sd-strip">
 				<?php foreach ($items as $item) : ?>
 				<li>
-					<div class="buffer">
 
-						<?php if (isset($item['link'])) : ?>
+					<?php if (isset($item['link'])) : ?>
 						<a href="<?php echo $item['link'] ?>">
 						<?php endif ?>
 
-						<?php if (isset($item['media'])) : ?>
-						<img src="<?php echo $item['media'] ?>" />
-						<?php endif ?>
+					<?php if (isset($item['media'])) : ?>
+					<img src="<?php echo $item['media'] ?>" width="205" height="<?php echo $item['height'] ?>">
+					<?php endif ?>
 
-						<?php if (isset($item['link'])) : ?>
+					<?php if (isset($item['link'])) : ?>
 						</a>
 						<?php endif ?>
 
-						<div class="content">
-							<p class="primary"><?php echo $item['title'] ?></p>
+					<div class="content">
+						<p class="primary"><?php echo $item['title'] ?></p>
 
-							<?php if (isset($item['name'])) : ?>
-							<p>
-								<?php if (isset($item['bioUrl'])) : ?>
+						<?php if (isset($item['name'])) : ?>
+						<p>
+							<?php if (isset($item['bioUrl'])) : ?>
 								<a href="<?php echo $item['bioUrl'] ?>">
 								<? endif ?>
 
-								<?php echo $item['name'] ?>
+							<?php echo $item['name'] ?>
 
-								<?php if (isset($item['bioUrl'])) : ?>
+							<?php if (isset($item['bioUrl'])) : ?>
 								</a>
 								<? endif ?>
-							</p>
-							<?php endif ?>
+						</p>
+						<?php endif ?>
 
-							<?php if (isset($item['date'])) : ?>
-							<p class="when"><?php echo $item['date'] ?></p>
-							<?php endif ?>
+						<?php if (isset($item['date'])) : ?>
+						<p class="when"><?php echo $item['date'] ?></p>
+						<?php endif ?>
 
-							<?php if (isset($item['link'])) : ?>
-							<a class="more small" href="<?php echo $item['link'] ?>">More</a>
-							<?php endif ?>
-						</div>
+						<?php if (isset($item['link'])) : ?>
+						<a class="more small" href="<?php echo $item['link'] ?>">More</a>
+						<?php endif ?>
 					</div>
 				</li>
 				<?php endforeach ?>
