@@ -26,19 +26,7 @@ $moduleclass_sfx = $params->get('moduleclass_sfx');
 // Render module output
 require JModuleHelper::getLayoutPath('mod_collections');
 
-$js = '<script type="text/javascript">
-(function ($) {
-	$().ready(function () {
-		$(".sd-strip-container").StripDeck({
-			autoPlay       : false,
-			speed          : 1000,
-			transitionSpeed: 500
-		});
-	});
-})(jQuery)
-</script>';
-
-$doc->addCustomTag($js);
+$doc->addScript(JURI::base(TRUE) . '/modules/mod_collections/tmpl/js/jquery.collections.js');
 
 /**
  * Load CSS files, first checking for template override of CSS.
