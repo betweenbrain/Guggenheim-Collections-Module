@@ -85,7 +85,7 @@ class modCollectionsHelper {
 	 * @since    1.0
 	 */
 	function compileCollectionItems($json) {
-		$endpoint   = $this->params->get('endpoint');
+		$endpoint = $this->params->get('endpoint');
 		//$json       = $this->fetchCollection();
 		$collection = json_decode($json);
 		$item       = NULL;
@@ -101,7 +101,11 @@ class modCollectionsHelper {
 
 						if (isset($items->media)) {
 							foreach ($items->media as $media) {
-								$item[$key]['media'] = $media->assets->full->_links->_self->href;
+								$item[$key]['media']  = $media->assets->full->_links->_self->href;
+								$width                = $media->assets->full->width;
+								$height               = $media->assets->full->height;
+								$height               = round($height * (205 / $width));
+								$item[$key]['height'] = $height;
 							}
 						}
 						if (isset($items->titles->primary)) {
