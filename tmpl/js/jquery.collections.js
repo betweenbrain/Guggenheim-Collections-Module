@@ -25,23 +25,6 @@
 		// Set top coordinate of controls based on height
 		$(".sd-strip-controls").css("top", (($maxHeight / 2) - 26));
 
-		// Detect and append total number of items
-		var n = $(".sd-strip li").length, p = $(".sd-strip").offset(), l = (p.left - 382);
-		$(".collections h3").append("<p class='counter'>" + (l + 1) + "-" + (l + 4) + " of " + n + "</p>");
-
-		/*
-		$(".sd-strip:animated").promise().done(function () {
-			$(".sd-strip li").each(function () {
-				$(this).removeClass("first");
-				var itemOffest = $(this).position(), p = $(".sd-strip").position(), l = p.left;
-				if (itemOffest.left === p.left) {
-					$(this).addClass("first");
-					return;
-				}
-			});
-		});
-		*/
-
 		// Initilize Gugg StripDeck
 		$(".sd-strip-container").StripDeck({
 			autoPlay       : false,
