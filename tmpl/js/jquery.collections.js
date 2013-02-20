@@ -29,19 +29,18 @@
 		var n = $(".sd-strip li").length, p = $(".sd-strip").offset(), l = (p.left - 382);
 		$(".collections h3").append("<p class='counter'>" + (l + 1) + "-" + (l + 4) + " of " + n + "</p>");
 
-
-		$(".control").click(function () {
-			setTimeout("checkVariable()", 1000);
+		/*
+		$(".sd-strip:animated").promise().done(function () {
+			$(".sd-strip li").each(function () {
+				$(this).removeClass("first");
+				var itemOffest = $(this).position(), p = $(".sd-strip").position(), l = p.left;
+				if (itemOffest.left === p.left) {
+					$(this).addClass("first");
+					return;
+				}
+			});
 		});
-
-		var isAnimating = $(".sd-strip").is(':animated');
-
-		function checkVariable() {
-			if (isAnimating != true) {
-				$(".sd-strip li:visible").eq(0).addClass("first");
-			}
-		}
-
+		*/
 
 		// Initilize Gugg StripDeck
 		$(".sd-strip-container").StripDeck({
