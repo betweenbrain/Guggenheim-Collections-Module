@@ -79,6 +79,14 @@
 		       default=""
 		       label="Module Class Suffix"
 		       description="PARAMMODULECLASSSUFFIX"/>
+		<param name="logZeroDim"
+		       type="list"
+		       default="0"
+		       label="MOD_COLLECTIONS_LOG_ZERO_DIM_LABEL"
+		       description="MOD_COLLECTIONS_LOG_ZERO_DIM_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
 		<param name="displaydiagnostic"
 		       type="list"
 		       default="0"

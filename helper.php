@@ -103,6 +103,18 @@ class modCollectionsHelper {
 								$imageHeight         = $media->assets->full->height;
 								$imageMaxWidth       = $this->params->get('imageMaxWidth');
 								$imageMaxHeight      = $this->params->get('imageMaxHeight');
+								$logZeroDim          = $this->params->get('logZeroDim');
+
+								if ($logZeroDim && ($imageWidth == '0' || $imageHeight == '0')) {
+									jimport('joomla.error.log');
+									$log = & JLog::getInstance('mod_collections.log');
+									if ($imageWidth == '0') {
+										$log->addEntry(array('LEVEL' => '1', 'STATUS' => 'IMAGE SIZE: ', 'COMMENT' => $items->accession . ' has a zero image width'));
+									}
+									if ($imageHeight == '0') {
+										$log->addEntry(array('LEVEL' => '1', 'STATUS' => 'IMAGE SIZE: ', 'COMMENT' => $items->accession . ' has a zero image height'));
+									}
+								}
 
 								if (($imageWidth > $imageMaxWidth) || ($imageHeight > $imageMaxHeight)) {
 									$scale                = ($imageWidth > $imageHeight) ? ($imageMaxWidth / $imageWidth) : ($imageMaxHeight / $imageHeight);
