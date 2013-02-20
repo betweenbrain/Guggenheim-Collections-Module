@@ -26,8 +26,6 @@ $moduleclass_sfx = $params->get('moduleclass_sfx');
 // Render module output
 require JModuleHelper::getLayoutPath('mod_collections');
 
-$doc->addScript(JURI::base(TRUE) . '/modules/mod_collections/tmpl/js/jquery.collections.js');
-
 /**
  * Load CSS files, first checking for template override of CSS.
  *
@@ -41,4 +39,10 @@ if (file_exists(JPATH_SITE . '/templates/' . $app->getTemplate() . '/css/mod_col
 	$doc->addStyleSheet(JURI::base(TRUE) . '/templates/' . $app->getTemplate() . '/css/mod_collections/collections.css');
 } elseif (file_exists(JPATH_SITE . '/modules/mod_collections/tmpl/css/collections.css')) {
 	$doc->addStyleSheet(JURI::base(TRUE) . '/modules/mod_collections/tmpl/css/collections.css');
+}
+
+if (file_exists(JPATH_SITE . '/templates/' . $app->getTemplate() . '/js/mod_collections/jquery.collections.js')) {
+	$doc->addScript(JURI::base(TRUE) . '/templates/' . $app->getTemplate() . '/js/mod_collections/jquery.collections.js');
+} elseif (file_exists(JPATH_SITE . '/modules/mod_collections/tmpl/js/jquery.collections.js')) {
+	$doc->addScript(JURI::base(TRUE) . '/modules/mod_collections/tmpl/js/jquery.collections.js');
 }
