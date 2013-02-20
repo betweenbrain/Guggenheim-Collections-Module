@@ -18,64 +18,64 @@
 	position : relative;
 }
 
-.sd-strip-controls .control {
+.collections .sd-strip-controls {
+	position : absolute;
+	right    : 0;
+}
+
+.collections .sd-strip-controls .control {
 	float    : right;
 	position : relative;
 	z-index  : 2;
 }
 
-.collections .sd-forward {
-	top : 295px;
-}
-
 .collections .sd-back {
-	top   : 305px;
 	clear : right;
 }
 
-div.gugg-rotator-container .sd-strip li .buffer {
-	width    : 225px;
-	position : relative;
+.collections .sd-strip li {
+	float           : left;
+	width           : 225px;
+	position        : relative;
+	list-style-type : none;
 }
 
-div.gugg-rotator-container .sd-strip li .buffer a {
+.collections .sd-strip li a {
 	display : block;
 }
 
-div.gugg-rotator-container .sd-strip li .buffer img {
-	max-width      : 205px;
-	display        : block;
-	position       : absolute;
-	bottom         : 120px;
-	left           : 0;
+.collections .sd-strip li img {
+	display  : block;
+	position : absolute;
+	bottom   : 120px;
+	left     : 0;
 }
 
-div.gugg-rotator-container .sd-strip li .buffer .content {
-	position  : absolute;
+.collections .sd-strip li .content {
 	max-width : 205px;
 	height    : 110px;
+	position  : absolute;
 	bottom    : 0;
-	left      : 0;
 }
 
-#content div.gugg-rotator-container .sd-strip li .buffer .content p {
-	margin: 2px 10px 0 0;
-	line-height: 16px;
+#content .collections .sd-strip li .content p {
+	margin      : 2px 10px 0 0;
+	line-height : 16px;
 }
 
-#content div.gugg-rotator-container .sd-strip li .buffer .content p.primary {
+#content .collections .sd-strip li .content p.primary {
 	font-weight : bold;
 	color       : #111;
 }
 
-div.gugg-rotator-container .sd-strip li .buffer .content a.more {
-	float :left;
-	position: relative;
-	top: 3px;
+.collections .sd-strip li .content a.more {
+	float    : left;
+	position : relative;
+	top      : 3px;
 }
 
-div.gugg-rotator-container .sd-strip li .buffer .content p.when {
-	float : left;
-	border-right: 1px solid #d9d9d9;
-	padding-right: 10px;
+.collections .sd-strip li .content p.when {
+	float         : left;
+	border-right  : 1px solid #d9d9d9;
+	padding-right : 10px;
 }
