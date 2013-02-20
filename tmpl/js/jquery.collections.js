@@ -10,28 +10,31 @@
  */
 (function ($) {
 	$().ready(function () {
+		// Initiate zero height
+		var $maxHeight = 0;
+		// Since we're using absolute positioning, check the height of each image
+		$(".sd-strip li img").each(function () {
+			$itemHeight = $(this).outerHeight();
+			if ($itemHeight > $maxHeight) {
+				// Add 110px for the content div
+				$maxHeight = $itemHeight + 110;
+			}
+		});
+		// Set heights
+		$(".collections, .sd-strip,  .sd-strip li").height($maxHeight);
+		// Set top coordinate of controls based on height
+		$(".sd-strip-controls").css("top", (($maxHeight / 2) - 26));
+
+		// Detect and append total number of items
+		var n = $(".sd-strip li").length, p = $(".sd-strip").offset(), l = (p.left - 382);
+		$(".collections h3").append("<p class='counter'>" + (l + 1) + "-" + (l + 4) + " of " + n + "</p>");
+
+		// Initilize Gugg StripDeck
 		$(".sd-strip-container").StripDeck({
 			autoPlay       : false,
 			speed          : 1000,
 			transitionSpeed: 500,
 			deck           : false
 		});
-
-		// Detect and append total number of items
-		var n = $(".sd-strip li").length, p = $(".sd-strip").offset(), l = (p.left - 382);
-		$(".collections-module h3").append("<p class='counter'>" + (l + 1) + "-" + (l + 4) + " of " + n + "</p>");
-
-		var maxHeight = 0;
-
-		$(".sd-strip li").each(function () {
-			//Store the highest value
-			if ($(this).height() > maxHeight) {
-				maxHeight = $(this).height();
-			}
-		});
-
-		//Set the height
-		$(".sd-strip li").height(maxHeight);
-
 	});
 })(jQuery);
