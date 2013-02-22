@@ -44,6 +44,11 @@
 		       default=""
 		       label="MOD_COLLECTIONS_ACCESS_KEY_LABEL"
 		       description="MOD_COLLECTIONS_ACCESS_KEY_DESC"/>
+		<param name="resultsLimit"
+		       type="text"
+		       default="35"
+		       label="MOD_COLLECTIONS_RESULTS_LIMIT_LABEL"
+		       description="MOD_COLLECTIONS_RESULTS_LIMIT_DESC"/>
 		<param name="titleLimit"
 		       type="text"
 		       default=""
