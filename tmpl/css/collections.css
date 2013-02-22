@@ -31,6 +31,7 @@
 
 .collections .sd-back {
 	clear : right;
+	top   : 12px;
 }
 
 .collections .sd-strip li {

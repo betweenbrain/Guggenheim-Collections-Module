@@ -27,7 +27,7 @@
 		// Set heights
 		$(".collections, .sd-strip,  .sd-strip li").height(maxHeight);
 		// Set top coordinate of controls based on height
-		$(".sd-strip-controls").css("top", ((maxHeight / 2) - 26));
+		$(".sd-strip-controls").css("top", ((maxHeight / 2) - 30));
 
 		// Initialize Gugg StripDeck
 		$(".sd-strip-container").StripDeck({
