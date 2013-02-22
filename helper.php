@@ -48,12 +48,14 @@ class modCollectionsHelper {
 		$curlTimeout    = htmlspecialchars($this->params->get('curlTimeout'));
 		$endpoint       = $this->params->get('endpoint');
 		$endpointID     = $this->params->get('endpointID');
+		$resultsLimit   = htmlspecialchars($this->params->get('resultsLimit'));
 		$userAgent      = htmlspecialchars($this->params->get('userAgent'));
 
 		// Build the search URL
 		$url = 'http://api.guggenheim.org/collections/' . $endpoint;
 		$url .= $endpointID ? '/' . $endpointID : NULL;
-		$url .= '?key=' . $accessKey;
+		$url .= '?per_page=' . $resultsLimit;
+		$url .= '&key=' . $accessKey;
 
 		$curl = curl_init();
 
