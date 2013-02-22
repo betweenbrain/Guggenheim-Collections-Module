@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="module" version="2.5" method="upgrade">
+	<name>Collections</name>
+	<creationDate>February 22, 2013</creationDate>
+	<author>Matt Thomas</author>
+	<authorUrl>http://betweenbrain.com</authorUrl>
+	<copyright>Copyright (C) 2012 Matt Thomas. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<version>1.0</version>
+	<description>MOD_COLLECTIONS_DESC</description>
+	<files>
+		<filename>mod_collections.xml</filename>
+		<filename module="mod_collections">mod_collections.php</filename>
+		<filename>index.html</filename>
+		<filename>helper.php</filename>
+		<folder>elements</folder>
+		<folder>tmpl</folder>
+	</files>
+
+	<languages>
+		<language tag="en-GB">language/en-GB/en-GB.mod_collections.ini</language>
+	</languages>
+
+	<params addpath="/modules/mod_collections/elements">
+		<param type="diagnostic"/>
+		<param name="endpoint"
+		       type="list"
+		       default="acquisitions"
+		       label="MOD_COLLECTIONS_ENDPOINT_LABEL"
+		       description="MOD_COLLECTIONS_ENDPOINT_DESC">
+			<option value="acquisitions">List Acquisitions</option>
+			<option value="exhibitions">List Exhibitions</option>
+			<option value="movements">List Movements</option>
+			<option value="objects">List Objects</option>
+			<option value="sites">List Sites</option>
+		</param>
+		<param name="endpointID"
+		       type="text"
+		       default=""
+		       label="MOD_COLLECTIONS_ENDPOINT_ID_LABEL"
+		       description="MOD_COLLECTIONS_ENDPOINT_ID_DESC"/>
+		<param name="accessKey"
+		       type="text"
+		       default=""
+		       label="MOD_COLLECTIONS_ACCESS_KEY_LABEL"
+		       description="MOD_COLLECTIONS_ACCESS_KEY_DESC"/>
+		<param name="resultsLimit"
+		       type="text"
+		       default="35"
+		       label="MOD_COLLECTIONS_RESULTS_LIMIT_LABEL"
+		       description="MOD_COLLECTIONS_RESULTS_LIMIT_DESC"/>
+		<param name="titleLimit"
+		       type="text"
+		       default=""
+		       label="MOD_COLLECTIONS_TITLE_LIMIT_LABEL"
+		       description="MOD_COLLECTIONS_TITLE_LIMIT_DESC"/>
+		<param name="imageMaxWidth"
+		       type="text"
+		       default=""
+		       label="MOD_COLLECTIONS_IMAGE_MAX_WIDTH_LABEL"
+		       description="MOD_COLLECTIONS_IMAGE_MAX_WIDTH_DESC"/>
+		<param name="imageMaxHeight"
+		       type="text"
+		       default=""
+		       label="MOD_COLLECTIONS_IMAGE_MAX_HEIGHT_LABEL"
+		       description="MOD_COLLECTIONS_IMAGE_MAX_HEIGHT_DESC"/>
+	</params>
+	<params group="other">
+		<param name="userAgent"
+		       type="text"
+		       default="JoomlaCollectionsModule"
+		       label="MOD_COLLECTIONS_USERAGENT_LABEL"
+		       description="MOD_COLLECTIONS_USERAGENT_DESC"/>
+		<param name="curlTimeout"
+		       type="text"
+		       default="150"
+		       label="MOD_COLLECTIONS_CURL_TIMEOUT_LABEL"
+		       description="MOD_COLLECTIONS_CURL_TIMEOUT_DESC"/>
+		<param name="connectTimeout"
+		       type="text"
+		       default="5"
+		       label="MOD_COLLECTIONS_CONNECT_TIMEOUT_LABEL"
+		       description="MOD_COLLECTIONS_CONNECT_TIMEOUT_DESC"/>
+	</params>
+	<params group="advanced">
+		<param name="cache"
+		       type="list"
+		       default="0"
+		       label="MOD_COLLECTIONS_CACHE_LABEL"
+		       description="MOD_COLLECTIONS_CACHE_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="cachemaxage"
+		       type="text"
+		       default="15"
+		       label="MOD_COLLECTIONS_CACHEMAXAGE_LABEL"
+		       description="MOD_COLLECTIONS_CACHEMAXAGE_DESC"/>
+		<param name="moduleclass_sfx"
+		       type="text"
+		       default=""
+		       label="Module Class Suffix"
+		       description="PARAMMODULECLASSSUFFIX"/>
+		<param name="logErrors"
+		       type="list"
+		       default="0"
+		       label="MOD_COLLECTIONS_LOG_ERRORS_LABEL"
+		       description="MOD_COLLECTIONS_LOG_ERRORS_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="displaydiagnostic"
+		       type="list"
+		       default="0"
+		       label="MOD_COLLECTIONS_DISPLAYDIAGNOSTIC_LABEL"
+		       description="MOD_COLLECTIONS_DISPLAYDIAGNOSTIC_DESC">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+	</params>
+</install>
