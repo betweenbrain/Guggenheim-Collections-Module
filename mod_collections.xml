@@ -60,6 +60,23 @@
 		       label="MOD_COLLECTIONS_IMAGE_MAX_HEIGHT_LABEL"
 		       description="MOD_COLLECTIONS_IMAGE_MAX_HEIGHT_DESC"/>
 	</params>
+	<params group="other">
+		<param name="userAgent"
+		       type="text"
+		       default="JoomlaCollectionsModule"
+		       label="MOD_COLLECTIONS_USERAGENT_LABEL"
+		       description="MOD_COLLECTIONS_USERAGENT_DESC"/>
+		<param name="curlTimeout"
+		       type="text"
+		       default="150"
+		       label="MOD_COLLECTIONS_CURL_TIMEOUT_LABEL"
+		       description="MOD_COLLECTIONS_CURL_TIMEOUT_DESC"/>
+		<param name="connectTimeout"
+		       type="text"
+		       default="5"
+		       label="MOD_COLLECTIONS_CONNECT_TIMEOUT_LABEL"
+		       description="MOD_COLLECTIONS_CONNECT_TIMEOUT_DESC"/>
+	</params>
 	<params group="advanced">
 		<param name="cache"
 		       type="list"

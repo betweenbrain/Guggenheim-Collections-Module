@@ -43,9 +43,12 @@ class modCollectionsHelper {
 	protected function fetchCollection() {
 
 		// Get parameters from the module's configuration
-		$accessKey  = htmlspecialchars($this->params->get('accessKey'));
-		$endpoint   = $this->params->get('endpoint');
-		$endpointID = $this->params->get('endpointID');
+		$accessKey      = htmlspecialchars($this->params->get('accessKey'));
+		$connectTimeout = htmlspecialchars($this->params->get('connectTimeout'));
+		$curlTimeout    = htmlspecialchars($this->params->get('curlTimeout'));
+		$endpoint       = $this->params->get('endpoint');
+		$endpointID     = $this->params->get('endpointID');
+		$userAgent      = htmlspecialchars($this->params->get('userAgent'));
 
 		// Build the search URL
 		$url = 'http://api.guggenheim.org/collections/' . $endpoint;
@@ -55,11 +58,11 @@ class modCollectionsHelper {
 		$curl = curl_init();
 
 		curl_setopt_array($curl, Array(
-			CURLOPT_USERAGENT      => "JoomlaCollectionsModule",
+			CURLOPT_USERAGENT      => $userAgent,
 			CURLOPT_HTTPHEADER     => array('Accept: application/vnd.guggenheim.collection+json'),
 			CURLOPT_URL            => $url,
-			CURLOPT_TIMEOUT        => 300,
-			CURLOPT_CONNECTTIMEOUT => 60,
+			CURLOPT_TIMEOUT        => $curlTimeout,
+			CURLOPT_CONNECTTIMEOUT => $connectTimeout,
 			CURLOPT_RETURNTRANSFER => TRUE,
 			CURLOPT_SSL_VERIFYHOST => FALSE,
 			CURLOPT_SSL_VERIFYPEER => FALSE,
