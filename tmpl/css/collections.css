@@ -21,6 +21,9 @@
 .collections .sd-strip-controls {
 	position : absolute;
 	right    : 0;
+	background: #fff;
+	z-index: 2;
+	padding-bottom: 13px;
 }
 
 .collections .sd-strip-controls .control {
