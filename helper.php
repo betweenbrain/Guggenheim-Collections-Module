@@ -99,21 +99,26 @@ class modCollectionsHelper {
 
 					foreach ($collection->objects->items as $key => $items) {
 
-						if (isset($items->media)) {
-							foreach ($items->media as $media) {
-								$item[$key]['media'] = $media->assets->medium->_links->_self->href;
-								$imageWidth          = $media->assets->medium->width;
-								$imageHeight         = $media->assets->medium->height;
-								$imageMaxWidth       = $this->params->get('imageMaxWidth');
-								$imageMaxHeight      = $this->params->get('imageMaxHeight');
-								$logErrors           = $this->params->get('logErrors');
+						if (isset($items->media[0])) {
+
+							foreach ($items->media[0] as $media) {
+
+								if (isset($media->medium->_links->_self->href)) {
+									$item[$key]['media'] = $media->medium->_links->_self->href;
+									$imageWidth          = $media->medium->width;
+									$imageHeight         = $media->medium->height;
+								}
+
+								$imageMaxWidth  = $this->params->get('imageMaxWidth');
+								$imageMaxHeight = $this->params->get('imageMaxHeight');
+								$logErrors      = $this->params->get('logErrors');
 
 								if ($logErrors) {
 									jimport('joomla.error.log');
 									$log     =& JLog::getInstance('mod_collections.log');
 									$headers = get_headers($item[$key]['media'], 1);
 									if ($headers[0] == 'HTTP/1.1 404 Not Found') {
-										$log->addEntry(array('LEVEL' => '1', 'STATUS' => '404 ERROR: ', 'COMMENT' => $media->assets->medium->_links->_self->href . ' returns a 404 error.'));
+										$log->addEntry(array('LEVEL' => '1', 'STATUS' => '404 ERROR: ', 'COMMENT' => $item[$key]['media'] . ' returns a 404 error.'));
 									}
 									if ($imageWidth == '0') {
 										$log->addEntry(array('LEVEL' => '1', 'STATUS' => 'IMAGE DIM: ', 'COMMENT' => $items->accession . ' has a zero image width dimension.'));
