@@ -79,11 +79,11 @@
 		       default=""
 		       label="Module Class Suffix"
 		       description="PARAMMODULECLASSSUFFIX"/>
-		<param name="logZeroDim"
+		<param name="logErrors"
 		       type="list"
 		       default="0"
-		       label="MOD_COLLECTIONS_LOG_ZERO_DIM_LABEL"
-		       description="MOD_COLLECTIONS_LOG_ZERO_DIM_DESC">
+		       label="MOD_COLLECTIONS_LOG_ERRORS_LABEL"
+		       description="MOD_COLLECTIONS_LOG_ERRORS_DESC">
 			<option value="0">No</option>
 			<option value="1">Yes</option>
 		</param>

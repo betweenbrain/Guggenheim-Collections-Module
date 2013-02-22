@@ -103,16 +103,20 @@ class modCollectionsHelper {
 								$imageHeight         = $media->assets->full->height;
 								$imageMaxWidth       = $this->params->get('imageMaxWidth');
 								$imageMaxHeight      = $this->params->get('imageMaxHeight');
-								$logZeroDim          = $this->params->get('logZeroDim');
+								$logErrors           = $this->params->get('logErrors');
 
-								if ($logZeroDim && ($imageWidth == '0' || $imageHeight == '0')) {
+								if ($logErrors) {
 									jimport('joomla.error.log');
-									$log = & JLog::getInstance('mod_collections.log');
+									$log     =& JLog::getInstance('mod_collections.log');
+									$headers = get_headers($item[$key]['media'], 1);
+									if ($headers[0] == 'HTTP/1.1 404 Not Found') {
+										$log->addEntry(array('LEVEL' => '1', 'STATUS' => '404 ERROR: ', 'COMMENT' => $media->assets->full->_links->_self->href . ' returns a 404 error.'));
+									}
 									if ($imageWidth == '0') {
-										$log->addEntry(array('LEVEL' => '1', 'STATUS' => 'IMAGE SIZE: ', 'COMMENT' => $items->accession . ' has a zero image width'));
+										$log->addEntry(array('LEVEL' => '1', 'STATUS' => 'IMAGE DIM: ', 'COMMENT' => $items->accession . ' has a zero image width dimension.'));
 									}
 									if ($imageHeight == '0') {
-										$log->addEntry(array('LEVEL' => '1', 'STATUS' => 'IMAGE SIZE: ', 'COMMENT' => $items->accession . ' has a zero image height'));
+										$log->addEntry(array('LEVEL' => '1', 'STATUS' => 'IMAGE DIM: ', 'COMMENT' => $items->accession . ' has a zero image height dimension.'));
 									}
 								}
 
@@ -200,7 +204,8 @@ class modCollectionsHelper {
 	 *
 	 * @since  1.0
 	 */
-	protected function compileCache($json, $cache) {
+	protected
+	function compileCache($json, $cache) {
 		if (json_decode($json)) {
 			file_put_contents($cache, $json);
 			if (file_exists($cache)) {
