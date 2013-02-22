@@ -21,7 +21,7 @@ $doc = JFactory::getDocument();
 $collection = new modCollectionsHelper($params);
 // Call the foo function
 $items = $collection->fetchCollectionItems();
-// Module class suiffix
+// Module class suffix
 $moduleclass_sfx = $params->get('moduleclass_sfx');
 // Render module output
 require JModuleHelper::getLayoutPath('mod_collections');

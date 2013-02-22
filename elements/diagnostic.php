@@ -60,9 +60,9 @@ class JElementDiagnostic extends JElement {
 				$messages[] = "Cache lifetime is $cachemaxage minute(s).<br/>";
 
 				if (is_dir($cachedir)) {
-					$messages[] = "Cache dirtectory exists at $cachedir.";
+					$messages[] = "Cache directory exists at $cachedir.";
 				} else {
-					$errors[] = "The cache diretory at $cachedir does not exist!";
+					$errors[] = "The cache directory at $cachedir does not exist!";
 				}
 			}
 
