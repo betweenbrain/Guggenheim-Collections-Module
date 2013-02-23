@@ -203,6 +203,8 @@ class modCollectionsHelper {
 			} elseif (file_exists($cache)) {
 				$json  = file_get_contents($cache);
 				$items = $this->compileCollectionItems($json);
+			} else {
+				return FALSE;
 			}
 		}
 
