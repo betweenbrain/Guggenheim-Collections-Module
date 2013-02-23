@@ -200,8 +200,9 @@ class modCollectionsHelper {
 				} else {
 					$this->validateCache($cache);
 				}
-			} else {
-				return FALSE;
+			} elseif (file_exists($cache)) {
+				$json  = file_get_contents($cache);
+				$items = $this->compileCollectionItems($json);
 			}
 		}
 
@@ -213,7 +214,8 @@ class modCollectionsHelper {
 	 *
 	 * @since  1.0
 	 */
-	protected function compileCache($json, $cache) {
+	protected
+	function compileCache($json, $cache) {
 		if (json_decode($json)) {
 			file_put_contents($cache, $json);
 			if (file_exists($cache)) {
