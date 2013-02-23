@@ -195,7 +195,7 @@ class modCollectionsHelper {
 			$json = $this->fetchCollection();
 			if ($json) {
 				$items = $this->compileCollectionItems($json);
-				if ($this->params->get('cache')) {
+				if ($this->params->get('cache') && !$this->validateCache($cache)) {
 					$this->compileCache($json, $cache);
 				} else {
 					$this->validateCache($cache);
