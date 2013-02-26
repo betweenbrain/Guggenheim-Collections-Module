@@ -195,12 +195,14 @@ class modCollectionsHelper {
 			$json = $this->fetchCollection();
 			if ($json) {
 				$items = $this->compileCollectionItems($json);
-				if ($this->params->get('cache')) {
+				if ($this->params->get('cache') && !$this->validateCache($cache)) {
 					$this->compileCache($json, $cache);
-				}
-				if (!$this->params->get('cache')) {
+				} else {
 					$this->validateCache($cache);
 				}
+			} elseif (file_exists($cache)) {
+				$json  = file_get_contents($cache);
+				$items = $this->compileCollectionItems($json);
 			} else {
 				return FALSE;
 			}
