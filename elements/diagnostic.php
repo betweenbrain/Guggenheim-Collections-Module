@@ -55,6 +55,8 @@ class JElementDiagnostic extends JElement {
 				if (file_exists($cache)) {
 					$messages[] = "The cache file exists at $cache.";
 					$messages[] = "The cache file was created $cacheAge.";
+				} else{
+					$errors[] = "The cache file at $cache does not exist!";
 				}
 
 				$messages[] = "Cache lifetime is $cacheMaxAge[1] minute(s).<br/>";
