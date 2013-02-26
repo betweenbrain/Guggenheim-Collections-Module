@@ -53,10 +53,10 @@ class JElementDiagnostic extends JElement {
 
 				if (file_exists($cache)) {
 					$cacheAge   = date("F d Y H:i:s", filemtime($cache));
-					$messages[] = "The cache file exists at $cache.";
-					$messages[] = "The cache file was created $cacheAge.";
+					$messages[] = "Cache file at $cache exists.";
+					$messages[] = "Cache file was created $cacheAge.";
 				} else {
-					$errors[] = "The cache file at $cache does not exist!";
+					$errors[] = "Cache file at $cache does not exist!";
 				}
 
 				$messages[] = "Cache lifetime is $cacheMaxAge[1] minute(s).<br/>";
@@ -64,12 +64,12 @@ class JElementDiagnostic extends JElement {
 				if (is_dir($cacheDir)) {
 					$messages[] = "Cache directory at $cacheDir exists.";
 					if (is_writable($cacheDir)) {
-						$messages[] = "The cache directory at $cacheDir is writable.";
+						$messages[] = "Cache directory at $cacheDir is writable.";
 					}
 				} else {
-					$errors[] = "The cache directory at $cacheDir does not exist!";
+					$errors[] = "Cache directory at $cacheDir does not exist!";
 					if (!is_writable($cacheDir)) {
-						$errors[] = "The cache directory at $cacheDir is not writable!";
+						$errors[] = "Cache directory at $cacheDir is not writable!";
 					}
 				}
 			}
