@@ -63,8 +63,14 @@ class JElementDiagnostic extends JElement {
 
 				if (is_dir($cacheDir)) {
 					$messages[] = "Cache directory exists at $cacheDir.";
+					if (is_writable($cacheDir)) {
+						$messages[] = "The cache directory at $cacheDir is writable.";
+					}
 				} else {
 					$errors[] = "The cache directory at $cacheDir does not exist!";
+					if (!is_writable($cacheDir)) {
+						$errors[] = "The cache directory at $cacheDir is not writable!";
+					}
 				}
 			}
 
