@@ -24,21 +24,21 @@ class JElementDiagnostic extends JElement {
 		$params = $db->loadResult();
 
 		// In Joomla 1.5, parameters are stored as a string, so we need to match condition with strpos.
-		$displaydiagnostic = strpos($params, 'displaydiagnostic=1');
+		$displayDiagnostic = strpos($params, 'displaydiagnostic=1');
 		$cache             = strpos($params, 'cache=1');
 
 		// JPATH_CACHE is relative to where it is being called from, as we want the site cache, /administrator is removed.
-		$cachedir = JPATH_CACHE . '/mod_collections/';
-		$cachedir = preg_replace("/administrator\//", '', $cachedir);
+		$cacheDir = JPATH_CACHE . '/mod_collections/';
+		$cacheDir = preg_replace("/administrator\//", '', $cacheDir);
 		// Determine cache maximum age as set by parameter
-		$cachemaxage = preg_match("/cachemaxage=([0-9]*)/", $params, $cachemaxagematches);
+		preg_match("/cachemaxage=([0-9]*)/", $params, $cacheMaxAge);
 
 		// Initialize variables
 		$result   = NULL;
 		$messages = NULL;
 		$errors   = NULL;
 
-		if ($displaydiagnostic) {
+		if ($displayDiagnostic) {
 
 			// Check cache stuff
 			if (!$cache) {
@@ -49,7 +49,7 @@ class JElementDiagnostic extends JElement {
 
 				$messages[] = "Caching is enabled.";
 
-				$cache    = $cachedir . 'objects.json';
+				$cache    = $cacheDir . 'objects.json';
 				$cacheAge = date("F d Y H:i:s", filemtime($cache));
 
 				if (file_exists($cache)) {
@@ -57,12 +57,12 @@ class JElementDiagnostic extends JElement {
 					$messages[] = "The cache file was created $cacheAge.";
 				}
 
-				$messages[] = "Cache lifetime is $cachemaxagematches[1] minute(s).<br/>";
+				$messages[] = "Cache lifetime is $cacheMaxAge[1] minute(s).<br/>";
 
-				if (is_dir($cachedir)) {
-					$messages[] = "Cache directory exists at $cachedir.";
+				if (is_dir($cacheDir)) {
+					$messages[] = "Cache directory exists at $cacheDir.";
 				} else {
-					$errors[] = "The cache directory at $cachedir does not exist!";
+					$errors[] = "The cache directory at $cacheDir does not exist!";
 				}
 			}
 
