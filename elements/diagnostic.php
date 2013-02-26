@@ -31,7 +31,7 @@ class JElementDiagnostic extends JElement {
 		$cachedir = JPATH_CACHE . '/mod_collections/';
 		$cachedir = preg_replace("/administrator\//", '', $cachedir);
 		// Determine cache maximum age as set by parameter
-		$cachemaxage = preg_match("/cachemaxage=[(0-9)*]/", $params);
+		$cachemaxage = preg_match("/cachemaxage=([0-9]*)/", $params, $cachemaxagematches);
 
 		// Initialize variables
 		$result   = NULL;
@@ -57,7 +57,7 @@ class JElementDiagnostic extends JElement {
 					$messages[] = "The cache file was created $cacheAge.";
 				}
 
-				$messages[] = "Cache lifetime is $cachemaxage minute(s).<br/>";
+				$messages[] = "Cache lifetime is $cachemaxagematches[1] minute(s).<br/>";
 
 				if (is_dir($cachedir)) {
 					$messages[] = "Cache directory exists at $cachedir.";
