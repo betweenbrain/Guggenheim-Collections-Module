@@ -59,6 +59,7 @@ class modCollectionsHelper {
 
 		// Get parameters from the module's configuration
 		$accessKey      = htmlspecialchars($this->params->get('accessKey'));
+		$cachemaxage    = $this->params->get('cachemaxage', 15) * 60;
 		$connectTimeout = htmlspecialchars($this->params->get('connectTimeout'));
 		$curlTimeout    = htmlspecialchars($this->params->get('curlTimeout'));
 		$endpoint       = $this->params->get('endpoint');
@@ -71,7 +72,8 @@ class modCollectionsHelper {
 		$url .= $endpointID ? '/' . $endpointID : NULL;
 
 		if ($this->isCachedRequest) {
-			$cachedRequest                   = new CachedRequest();
+			$cachedRequest = new CachedRequest();
+			$cachedRequest->cacheAge($cachemaxage);
 			$query                           = array('per_page' => $resultsLimit);
 			$headers['Accept']               = 'application/vnd.guggenheim.collection+json';
 			$headers['X-GUGGENHEIM-API-KEY'] = $accessKey;
