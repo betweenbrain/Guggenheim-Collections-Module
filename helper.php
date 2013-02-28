@@ -17,9 +17,17 @@ class modCollectionsHelper {
 	 * Module parameters
 	 *
 	 * @var    boolean
-	 * @since  0.0
+	 * @since  1.0
 	 */
 	protected $params;
+
+	/**
+	 * Flag to determine whether /libraries/guggenheim/cachedrequest.php exists or not
+	 *
+	 * @var    boolean
+	 * @since  1.2
+	 */
+	protected $isCachedRequest = FALSE;
 
 	/**
 	 * Constructor
@@ -31,6 +39,13 @@ class modCollectionsHelper {
 	public function __construct($params) {
 		// Store the module params
 		$this->params = $params;
+		// If com_cachedrequest is enabled, we know it is installed and can assume registering CachedRequest is safe
+		if (JComponentHelper::isEnabled('com_cachedrequest')) {
+			JLoader::register("CachedRequest", JPATH_ROOT . '/administrator/components/com_cachedrequest/cachedrequesthandler.php');
+			if (class_exists('CachedRequest')) {
+				$this->isCachedRequest = TRUE;
+			}
+		}
 	}
 
 	/**
@@ -54,27 +69,36 @@ class modCollectionsHelper {
 		// Build the search URL
 		$url = 'http://api.guggenheim.org/collections/' . $endpoint;
 		$url .= $endpointID ? '/' . $endpointID : NULL;
-		$url .= '?per_page=' . $resultsLimit;
-		$url .= '&key=' . $accessKey;
 
-		$curl = curl_init();
+		if ($this->isCachedRequest) {
+			$cachedRequest                   = new CachedRequest();
+			$query                           = array('per_page' => $resultsLimit);
+			$headers['Accept']               = 'application/vnd.guggenheim.collection+json';
+			$headers['X-GUGGENHEIM-API-KEY'] = $accessKey;
+			$json                            = $cachedRequest->get($url, $query, $headers);
+			$json                            = trim($json, '"');
+		} else {
 
-		curl_setopt_array($curl, Array(
-			CURLOPT_USERAGENT      => $userAgent,
-			CURLOPT_HTTPHEADER     => array('Accept: application/vnd.guggenheim.collection+json'),
-			CURLOPT_URL            => $url,
-			CURLOPT_TIMEOUT        => $curlTimeout,
-			CURLOPT_CONNECTTIMEOUT => $connectTimeout,
-			CURLOPT_RETURNTRANSFER => TRUE,
-			CURLOPT_SSL_VERIFYHOST => FALSE,
-			CURLOPT_SSL_VERIFYPEER => FALSE,
-			CURLOPT_ENCODING       => 'UTF-8'
-		));
+			$url .= '?per_page=' . $resultsLimit;
 
-		$json = curl_exec($curl);
-		$data = json_decode($json, TRUE);
+			$curl = curl_init();
 
-		if ($data) {
+			curl_setopt_array($curl, Array(
+				CURLOPT_USERAGENT      => $userAgent,
+				CURLOPT_HTTPHEADER     => array('Accept: application/vnd.guggenheim.collection+json', 'X-GUGGENHEIM-API-KEY: ' . $accessKey),
+				CURLOPT_URL            => $url,
+				CURLOPT_TIMEOUT        => $curlTimeout,
+				CURLOPT_CONNECTTIMEOUT => $connectTimeout,
+				CURLOPT_RETURNTRANSFER => TRUE,
+				CURLOPT_SSL_VERIFYHOST => FALSE,
+				CURLOPT_SSL_VERIFYPEER => FALSE,
+				CURLOPT_ENCODING       => 'UTF-8'
+			));
+
+			$json = curl_exec($curl);
+		}
+
+		if (json_decode($json, TRUE)) {
 			return $json;
 		}
 
@@ -187,24 +211,29 @@ class modCollectionsHelper {
 	 * @since  1.0
 	 */
 	function fetchCollectionItems() {
-		$cache = JPATH_CACHE . '/mod_collections/objects.json';
-		if ($this->params->get('cache') && $this->validateCache($cache)) {
-			$json  = file_get_contents($cache);
+		if ($this->isCachedRequest) {
+			$json  = $this->fetchCollection();
 			$items = $this->compileCollectionItems($json);
 		} else {
-			$json = $this->fetchCollection();
-			if ($json) {
-				$items = $this->compileCollectionItems($json);
-				if ($this->params->get('cache') && !$this->validateCache($cache)) {
-					$this->compileCache($json, $cache);
-				} else {
-					$this->validateCache($cache);
-				}
-			} elseif (file_exists($cache)) {
+			$cache = JPATH_CACHE . '/mod_collections/objects.json';
+			if ($this->params->get('cache') && $this->validateCache($cache)) {
 				$json  = file_get_contents($cache);
 				$items = $this->compileCollectionItems($json);
 			} else {
-				return FALSE;
+				$json = $this->fetchCollection();
+				if ($json) {
+					$items = $this->compileCollectionItems($json);
+					if ($this->params->get('cache') && !$this->validateCache($cache)) {
+						$this->compileCache($json, $cache);
+					} else {
+						$this->validateCache($cache);
+					}
+				} elseif (file_exists($cache)) {
+					$json  = file_get_contents($cache);
+					$items = $this->compileCollectionItems($json);
+				} else {
+					return FALSE;
+				}
 			}
 		}
 
