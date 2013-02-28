@@ -41,7 +41,7 @@ class modCollectionsHelper {
 		$this->params = $params;
 		// If com_cachedrequest is enabled, we know it is installed and can assume registering CachedRequest is safe
 		if (JComponentHelper::isEnabled('com_cachedrequest')) {
-			JLoader::register("CachedRequest", JPATH_ROOT . '/administrator/components/com_cachedrequest/cachedrequesthandler.php');
+			JLoader::register("CachedRequest", JPATH_ADMINISTRATOR . '/components/com_cachedrequest/cachedrequesthandler.php');
 			if (class_exists('CachedRequest')) {
 				$this->isCachedRequest = TRUE;
 			}
