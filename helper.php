@@ -180,7 +180,7 @@ class modCollectionsHelper {
 								if ($constituents->role == "Artist") {
 									$item[$key]['name'] = $constituents->constituent->display;
 									if ($constituents->constituent->has_bio == '1') {
-										$item[$key]['bioUrl'] = 'http://www.guggenheim.org/new-york/collections/collection-online/show-full/bio/?artist_name=' . str_replace(' ', '%20', $constituents->constituent->display);
+										$item[$key]['bioUrl'] = 'http://www.guggenheim.org/new-york/collections/collection-online/artists/bios/' . $constituents->constituent->id;
 									}
 								}
 							}
