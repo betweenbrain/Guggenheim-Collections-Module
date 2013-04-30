@@ -11,13 +11,29 @@
  * License    GNU GPL v3 or later
  */
 
-if ($items) : ?>
-<div class="collections<?php echo $moduleclass_sfx ?>">
-	<div class="sd-strip-controls-container">
-		<div class="sd-strip-controls">
-			<img class="control sd-forward" src="http://www.guggenheim.org/templates/guggenheim_ubs_map_portal/images/right-arrow.png" alt="Forward" />
-			<img class="control sd-back" src="http://www.guggenheim.org/templates/guggenheim_ubs_map_portal/images/left-arrow.png" alt="Back" />
-		</div>
+if ($items) :
+	// Load looper.js and Looper.css
+	$doc = JFactory::getDocument();
+	$app = JFactory::getApplication();
+	$doc->addScript('templates/' . $app->getTemplate() . '/js/looper.js');
+	$doc->addStylesheet('templates/' . $app->getTemplate() . '/css/looper.css');
+
+	?>
+<div data-looper="go" data-interval="false" class="looper slide collections<?php echo $moduleclass_sfx ?>">
+
+	<nav>
+			<a data-looper="prev" class="nav prev" href="#k2ModuleBox<?php echo $module->id; ?>">
+				Previous
+			</a>
+			<a data-looper="next" class="nav next" href="#k2ModuleBox<?php echo $module->id; ?>">
+				Next
+			</a>
+		</nav>
+
+
+
+
+
 		<div class="sd-strip-container">
 			<ul class="sd-strip">
 				<?php foreach ($items as $item) : ?>
