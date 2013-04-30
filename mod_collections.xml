@@ -17,6 +17,12 @@
 		<folder>tmpl</folder>
 	</files>
 
+	<media destination="looper" folder="media">
+	 <folder>css</folder>
+	 <folder>js</folder>
+	 <file>index.html</file>
+	</media>
+
 	<languages>
 		<language tag="en-GB">language/en-GB/en-GB.mod_collections.ini</language>
 	</languages>

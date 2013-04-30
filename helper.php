@@ -247,8 +247,7 @@ class modCollectionsHelper {
 	 *
 	 * @since  1.0
 	 */
-	protected
-	function compileCache($json, $cache) {
+	protected function compileCache($json, $cache) {
 		if (json_decode($json)) {
 			file_put_contents($cache, $json);
 			if (file_exists($cache)) {
@@ -282,5 +281,25 @@ class modCollectionsHelper {
 		}
 
 		return FALSE;
+	}
+
+	function loopStart($i) {
+		$ipl = $this->params->get('itemsPerLoop');
+
+		if (fmod($i, $ipl) == 0) {
+			return '<div class="item">';
+		}
+
+		return NULL;
+	}
+
+	function loopEnd($i, $last) {
+		$ipl = $this->params->get('itemsPerLoop');
+
+		if ((fmod($i, $ipl) == $ipl - 1) || ($i == $last)) {
+			return '</div>';
+		}
+
+		return NULL;
 	}
 }

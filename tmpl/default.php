@@ -11,13 +11,7 @@
  * License    GNU GPL v3 or later
  */
 
-if ($items) :
-	// Load looper.js and Looper.css
-	$doc = JFactory::getDocument();
-	$app = JFactory::getApplication();
-	$doc->addScript('templates/' . $app->getTemplate() . '/js/looper.js');
-	$doc->addStylesheet('templates/' . $app->getTemplate() . '/css/looper.css');
-	?>
+if ($items) : ?>
 	<div data-looper="go" id="looper<?php echo $module->id; ?>" data-interval="false" class="looper slide collections<?php echo $moduleclass_sfx ?>">
 
 		<nav>
@@ -33,9 +27,7 @@ if ($items) :
 
 			<?php foreach ($items as $i => $item) : ?>
 
-				<?php if (fmod($i, $ipl) == 0) {
-					echo '<div class="item">';
-				} ?>
+				<?php echo $collection->loopStart($i) ?>
 
 				<li>
 					<?php if (isset($item['link'])) : ?>
@@ -77,14 +69,10 @@ if ($items) :
 					</div>
 				</li>
 
-				<?php if ((fmod($i, $ipl) == $ipl - 1) || ($i == $last)) {
-					echo '</div>';
-				} ?>
+				<?php echo $collection->loopEnd($i, $last) ?>
 
 			<?php endforeach ?>
 		</ul>
-	</div>
-	</div>
 	</div>
 <?php endif ?>
 
