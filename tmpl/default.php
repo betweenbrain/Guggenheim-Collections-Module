@@ -17,70 +17,74 @@ if ($items) :
 	$app = JFactory::getApplication();
 	$doc->addScript('templates/' . $app->getTemplate() . '/js/looper.js');
 	$doc->addStylesheet('templates/' . $app->getTemplate() . '/css/looper.css');
-
 	?>
-<div data-looper="go" data-interval="false" class="looper slide collections<?php echo $moduleclass_sfx ?>">
+	<div data-looper="go" id="looper<?php echo $module->id; ?>" data-interval="false" class="looper slide collections<?php echo $moduleclass_sfx ?>">
 
-	<nav>
-			<a data-looper="prev" class="nav prev" href="#k2ModuleBox<?php echo $module->id; ?>">
+		<nav>
+			<a data-looper="prev" class="nav prev" href="#looper<?php echo $module->id; ?>">
 				Previous
 			</a>
-			<a data-looper="next" class="nav next" href="#k2ModuleBox<?php echo $module->id; ?>">
+			<a data-looper="next" class="nav next" href="#looper<?php echo $module->id; ?>">
 				Next
 			</a>
 		</nav>
 
+		<ul class="looper-inner">
 
+			<?php foreach ($items as $i => $item) : ?>
 
+				<?php if (fmod($i, $ipl) == 0) {
+					echo '<div class="item">';
+				} ?>
 
-
-		<div class="sd-strip-container">
-			<ul class="sd-strip">
-				<?php foreach ($items as $item) : ?>
 				<li>
-
 					<?php if (isset($item['link'])) : ?>
-						<a href="<?php echo $item['link'] ?>">
+					<a href="<?php echo $item['link'] ?>">
 						<?php endif ?>
 
-					<?php if (isset($item['media'])) : ?>
-					<img src="<?php echo $item['media'] ?>" width="<?php echo $item['width'] ?>" height="<?php echo $item['height'] ?>">
-					<?php endif ?>
-
-					<?php if (isset($item['link'])) : ?>
-						</a>
+						<?php if (isset($item['media'])) : ?>
+							<img src="<?php echo $item['media'] ?>" width="<?php echo $item['width'] ?>" height="<?php echo $item['height'] ?>">
 						<?php endif ?>
+
+						<?php if (isset($item['link'])) : ?>
+					</a>
+				<?php endif ?>
 
 					<div class="content">
 						<p class="primary"><?php echo $item['title'] ?></p>
 
 						<?php if (isset($item['name'])) : ?>
-						<p>
-							<?php if (isset($item['bioUrl'])) : ?>
+							<p>
+								<?php if (isset($item['bioUrl'])) : ?>
 								<a href="<?php echo $item['bioUrl'] ?>">
-								<? endif ?>
+									<? endif ?>
 
-							<?php echo $item['name'] ?>
+									<?php echo $item['name'] ?>
 
-							<?php if (isset($item['bioUrl'])) : ?>
+									<?php if (isset($item['bioUrl'])) : ?>
 								</a>
-								<? endif ?>
-						</p>
+							<? endif ?>
+							</p>
 						<?php endif ?>
 
 						<?php if (isset($item['date'])) : ?>
-						<p class="when"><?php echo $item['date'] ?></p>
+							<p class="when"><?php echo $item['date'] ?></p>
 						<?php endif ?>
 
 						<?php if (isset($item['link'])) : ?>
-						<a class="more small" href="<?php echo $item['link'] ?>">More</a>
+							<a class="more small" href="<?php echo $item['link'] ?>">More</a>
 						<?php endif ?>
 					</div>
 				</li>
-				<?php endforeach ?>
-			</ul>
-		</div>
+
+				<?php if ((fmod($i, $ipl) == $ipl - 1) || ($i == $last)) {
+					echo '</div>';
+				} ?>
+
+			<?php endforeach ?>
+		</ul>
 	</div>
-</div>
+	</div>
+	</div>
 <?php endif ?>
 

@@ -21,6 +21,10 @@ $doc = JFactory::getDocument();
 $collection = new modCollectionsHelper($params);
 // Call the foo function
 $items = $collection->fetchCollectionItems();
+// Last item flag
+$last = count($items) - 1;
+// Items per loop
+$ipl = $params->get('itemsPerLoop');
 // Module class suffix
 $moduleclass_sfx = $params->get('moduleclass_sfx');
 // Render module output

@@ -64,6 +64,11 @@
 		       default="205"
 		       label="MOD_COLLECTIONS_IMAGE_MAX_HEIGHT_LABEL"
 		       description="MOD_COLLECTIONS_IMAGE_MAX_HEIGHT_DESC"/>
+		<param name="itemsPerLoop"
+		       type="text"
+		       default="4"
+		       label="MOD_COLLECTIONS_ITEMS_PER_LOOP_LABEL"
+		       description="MOD_COLLECTIONS_ITEMS_PER_LOOP_DESC"/>
 	</params>
 	<params group="other">
 		<param name="userAgent"
