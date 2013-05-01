@@ -12,7 +12,7 @@
  */
 
 if ($items) : ?>
-	<div data-looper="go" id="looper<?php echo $module->id; ?>" data-interval="false" class="looper slide collections<?php echo $moduleclass_sfx ?>">
+	<div data-looper="go" id="looper<?php echo $module->id; ?>" data-interval="false" class="looper side slide collections<?php echo $moduleclass_sfx ?>">
 		<div class="nav">
 			<a data-looper="prev" class="prev" href="#looper<?php echo $module->id; ?>">Previous</a>
 			<a data-looper="next" class="next" href="#looper<?php echo $module->id; ?>">Next</a>
