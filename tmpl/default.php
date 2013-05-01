@@ -13,64 +13,46 @@
 
 if ($items) : ?>
 	<div data-looper="go" id="looper<?php echo $module->id; ?>" data-interval="false" class="looper slide collections<?php echo $moduleclass_sfx ?>">
-
 		<nav>
-			<a data-looper="prev" class="nav prev" href="#looper<?php echo $module->id; ?>">
-				Previous
-			</a>
-			<a data-looper="next" class="nav next" href="#looper<?php echo $module->id; ?>">
-				Next
-			</a>
+			<a data-looper="prev" class="nav prev" href="#looper<?php echo $module->id; ?>">Previous</a>
+			<a data-looper="next" class="nav next" href="#looper<?php echo $module->id; ?>">Next</a>
 		</nav>
-
 		<ul class="looper-inner">
-
 			<?php foreach ($items as $i => $item) : ?>
-
 				<?php echo $collection->loopStart($i) ?>
-
 				<li>
 					<?php if (isset($item['link'])) : ?>
 					<a href="<?php echo $item['link'] ?>">
 						<?php endif ?>
-
 						<?php if (isset($item['media'])) : ?>
 							<img src="<?php echo $item['media'] ?>" width="<?php echo $item['width'] ?>" height="<?php echo $item['height'] ?>">
 						<?php endif ?>
-
 						<?php if (isset($item['link'])) : ?>
 					</a>
 				<?php endif ?>
 
 					<div class="content">
 						<p class="primary"><?php echo $item['title'] ?></p>
-
 						<?php if (isset($item['name'])) : ?>
 							<p>
 								<?php if (isset($item['bioUrl'])) : ?>
 								<a href="<?php echo $item['bioUrl'] ?>">
 									<? endif ?>
-
 									<?php echo $item['name'] ?>
-
 									<?php if (isset($item['bioUrl'])) : ?>
 								</a>
 							<? endif ?>
 							</p>
 						<?php endif ?>
-
 						<?php if (isset($item['date'])) : ?>
 							<p class="when"><?php echo $item['date'] ?></p>
 						<?php endif ?>
-
 						<?php if (isset($item['link'])) : ?>
 							<a class="more small" href="<?php echo $item['link'] ?>">More</a>
 						<?php endif ?>
 					</div>
 				</li>
-
 				<?php echo $collection->loopEnd($i, $last) ?>
-
 			<?php endforeach ?>
 		</ul>
 	</div>
