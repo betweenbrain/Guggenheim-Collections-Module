@@ -30,7 +30,7 @@ require JModuleHelper::getLayoutPath('mod_collections');
 
 $imageMaxWidth  = $params->get('imageMaxWidth');
 $imageMaxHeight = $params->get('imageMaxHeight');
-$css            = '.collections .sd-strip li img { max-width: ' . $imageMaxWidth . 'px; max-height: ' . $imageMaxHeight . 'px;}';
+$css            = '.collections li img { max-width: ' . $imageMaxWidth . 'px; max-height: ' . $imageMaxHeight . 'px;}';
 $doc->addStyleDeclaration($css);
 
 /**
