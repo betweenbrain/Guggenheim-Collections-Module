@@ -13,10 +13,10 @@
 
 if ($items) : ?>
 	<div data-looper="go" id="looper<?php echo $module->id; ?>" data-interval="false" class="looper slide collections<?php echo $moduleclass_sfx ?>">
-		<nav>
-			<a data-looper="prev" class="nav prev" href="#looper<?php echo $module->id; ?>">Previous</a>
-			<a data-looper="next" class="nav next" href="#looper<?php echo $module->id; ?>">Next</a>
-		</nav>
+		<div class="nav">
+			<a data-looper="prev" class="prev" href="#looper<?php echo $module->id; ?>">Previous</a>
+			<a data-looper="next" class="next" href="#looper<?php echo $module->id; ?>">Next</a>
+		</div>
 		<ul class="looper-inner">
 			<?php foreach ($items as $i => $item) : ?>
 				<?php echo $collection->loopStart($i) ?>
