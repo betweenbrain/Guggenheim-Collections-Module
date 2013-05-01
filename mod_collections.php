@@ -48,3 +48,9 @@ if (file_exists(JPATH_SITE . '/templates/' . $app->getTemplate() . '/js/looper.j
 } elseif (file_exists(JPATH_SITE . '/media/looper/js/looper.js')) {
 	$doc->addScript(JURI::base(TRUE) . '/media/looper/js/looper.js');
 }
+
+if (file_exists(JPATH_SITE . '/templates/' . $app->getTemplate() . '/js/jquery.collections.js')) {
+	$doc->addScript(JURI::base(TRUE) . '/templates/' . $app->getTemplate() . '/js/jquery.collections.js');
+} elseif (file_exists(JPATH_SITE . '/modules/mod_collections/tmpl/js/jquery.collections.js')) {
+	$doc->addScript(JURI::base(TRUE) . '/modules/mod_collections/tmpl/js/jquery.collections.js');
+}
