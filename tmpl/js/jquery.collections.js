@@ -27,6 +27,6 @@
         // Set heights
         $(".collections li").height(maxHeight);
         // Set top coordinate of controls based on height
-        $(".collections .nav").css("top", ((maxHeight / 2) - 30));
+        // $(".collections .nav").css("top", ((maxHeight / 2) - 30));
     });
 }(jQuery));
