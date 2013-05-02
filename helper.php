@@ -3,12 +3,8 @@
 /**
  * File       helper.php
  * Created    2/12/13 12:25 PM
- * Author     Matt Thomas
- * Website    http://betweenbrain.com
- * Email      matt@betweenbrain.com
- * Support    https://github.com/betweenbrain/
- * Copyright  Copyright (C) 2012 betweenbrain llc. All Rights Reserved.
- * License    GNU GPL v3 or later
+ * Author     Matt Thomas | matt@betweenbrain.com | http://betweenbrain.com
+ * Copyright  Copyright (C) 2012 The Solomon R. Guggenheim Foundation. All Rights Reserved.
  */
 
 class modCollectionsHelper {

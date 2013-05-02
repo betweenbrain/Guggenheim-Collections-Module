@@ -1,12 +1,8 @@
 /**
  * File
  * Created    2/19/13 4:45 PM
- * Author     Matt Thomas
- * Website    http://betweenbrain.com
- * Email      matt@betweenbrain.com
- * Support    https://github.com/betweenbrain/
- * Copyright  Copyright (C) 2013 betweenbrain llc. All Rights Reserved.
- * License    GNU GPL v3 or later
+ * Author     Matt Thomas | matt@betweenbrain.com | http://betweenbrain.com
+ * Copyright  Copyright (C) 2013 The Solomon R. Guggenheim Foundation. All Rights Reserved.
  */
 
 /*global $, jQuery*/
