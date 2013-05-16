@@ -3,12 +3,8 @@
 /**
  * File       mod_collections.php
  * Created    2/12/13 12:04 PM
- * Author     Matt Thomas
- * Website    http://betweenbrain.com
- * Email      matt@betweenbrain.com
- * Support    https://github.com/betweenbrain/
- * Copyright  Copyright (C) 2012 betweenbrain llc. All Rights Reserved.
- * License    GNU GPL v3 or later
+ * Author     Matt Thomas | matt@betweenbrain.com | http://betweenbrain.com
+ * Copyright  Copyright (C) 2012 The Solomon R. Guggenheim Foundation. All Rights Reserved.
  */
 
 // Include the helper file
@@ -21,6 +17,8 @@ $doc = JFactory::getDocument();
 $collection = new modCollectionsHelper($params);
 // Call the foo function
 $items = $collection->fetchCollectionItems();
+// Last item flag
+$last = count($items) - 1;
 // Module class suffix
 $moduleclass_sfx = $params->get('moduleclass_sfx');
 // Render module output
@@ -28,11 +26,11 @@ require JModuleHelper::getLayoutPath('mod_collections');
 
 $imageMaxWidth  = $params->get('imageMaxWidth');
 $imageMaxHeight = $params->get('imageMaxHeight');
-$css            = '.collections .sd-strip li img { max-width: ' . $imageMaxWidth . 'px; max-height: ' . $imageMaxHeight . 'px;}';
+$css            = '.collections li img { max-width: ' . $imageMaxWidth . 'px; max-height: ' . $imageMaxHeight . 'px;}';
 $doc->addStyleDeclaration($css);
 
 /**
- * Load CSS files, first checking for template override of CSS.
+ * Load CSS/JS files, first checking for template override.
  *
  * JPATH_SITE: Absolute path to the installed Joomla! site Checking absolute path helps security.
  *
@@ -40,14 +38,20 @@ $doc->addStyleDeclaration($css);
  * otherwise the scheme, host and port are prepended to the path.
  */
 
-if (file_exists(JPATH_SITE . '/templates/' . $app->getTemplate() . '/css/mod_collections/collections.css')) {
-	$doc->addStyleSheet(JURI::base(TRUE) . '/templates/' . $app->getTemplate() . '/css/mod_collections/collections.css');
-} elseif (file_exists(JPATH_SITE . '/modules/mod_collections/tmpl/css/collections.css')) {
-	$doc->addStyleSheet(JURI::base(TRUE) . '/modules/mod_collections/tmpl/css/collections.css');
+if (file_exists(JPATH_SITE . '/templates/' . $app->getTemplate() . '/css/looper.css')) {
+	$doc->addStyleSheet(JURI::base(TRUE) . '/templates/' . $app->getTemplate() . '/css/looper.css');
+} elseif (file_exists(JPATH_SITE . '/media/css/looper.css')) {
+	$doc->addStyleSheet(JURI::base(TRUE) . '/media/css/looper.css');
 }
 
-if (file_exists(JPATH_SITE . '/templates/' . $app->getTemplate() . '/js/mod_collections/jquery.collections.js')) {
-	$doc->addScript(JURI::base(TRUE) . '/templates/' . $app->getTemplate() . '/js/mod_collections/jquery.collections.js');
+if (file_exists(JPATH_SITE . '/templates/' . $app->getTemplate() . '/js/looper.js')) {
+	$doc->addScript(JURI::base(TRUE) . '/templates/' . $app->getTemplate() . '/js/looper.js');
+} elseif (file_exists(JPATH_SITE . '/media/js/looper.js')) {
+	$doc->addScript(JURI::base(TRUE) . '/media/js/looper.js');
+}
+
+if (file_exists(JPATH_SITE . '/templates/' . $app->getTemplate() . '/js/jquery.collections.js')) {
+	$doc->addScript(JURI::base(TRUE) . '/templates/' . $app->getTemplate() . '/js/jquery.collections.js');
 } elseif (file_exists(JPATH_SITE . '/modules/mod_collections/tmpl/js/jquery.collections.js')) {
 	$doc->addScript(JURI::base(TRUE) . '/modules/mod_collections/tmpl/js/jquery.collections.js');
 }

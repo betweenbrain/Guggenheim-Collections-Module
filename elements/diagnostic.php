@@ -3,11 +3,8 @@
 /**
  * File       diagnostic.php
  * Created    2/12/13 11:59 AM
- * Author     Matt Thomas
- * Website    http://betweenbrain.com
- * Email      matt@betweenbrain.com
- * Support    https://github.com/betweenbrain/
- * Copyright  Copyright (C) 2012 betweenbrain llc. All Rights Reserved.
+ * Author     Matt Thomas | matt@betweenbrain.com | http://betweenbrain.com
+ * Copyright  Copyright (C) 2013 betweenbrain llc. All Rights Reserved.
  * License    GNU GPL v3 or later
  */
 

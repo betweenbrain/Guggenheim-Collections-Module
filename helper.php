@@ -3,12 +3,8 @@
 /**
  * File       helper.php
  * Created    2/12/13 12:25 PM
- * Author     Matt Thomas
- * Website    http://betweenbrain.com
- * Email      matt@betweenbrain.com
- * Support    https://github.com/betweenbrain/
- * Copyright  Copyright (C) 2012 betweenbrain llc. All Rights Reserved.
- * License    GNU GPL v3 or later
+ * Author     Matt Thomas | matt@betweenbrain.com | http://betweenbrain.com
+ * Copyright  Copyright (C) 2012 The Solomon R. Guggenheim Foundation. All Rights Reserved.
  */
 
 class modCollectionsHelper {
@@ -247,8 +243,7 @@ class modCollectionsHelper {
 	 *
 	 * @since  1.0
 	 */
-	protected
-	function compileCache($json, $cache) {
+	protected function compileCache($json, $cache) {
 		if (json_decode($json)) {
 			file_put_contents($cache, $json);
 			if (file_exists($cache)) {
@@ -282,5 +277,25 @@ class modCollectionsHelper {
 		}
 
 		return FALSE;
+	}
+
+	function loopStart($i) {
+		$ipl = $this->params->get('itemsPerLoop');
+
+		if (fmod($i, $ipl) == 0) {
+			return '<div class="item">';
+		}
+
+		return NULL;
+	}
+
+	function loopEnd($i, $last) {
+		$ipl = $this->params->get('itemsPerLoop');
+
+		if ((fmod($i, $ipl) == $ipl - 1) || ($i == $last)) {
+			return '</div>';
+		}
+
+		return NULL;
 	}
 }
