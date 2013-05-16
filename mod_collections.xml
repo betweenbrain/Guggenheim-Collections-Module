@@ -4,8 +4,7 @@
 	<creationDate>February 28, 2013</creationDate>
 	<author>Matt Thomas</author>
 	<authorUrl>http://betweenbrain.com</authorUrl>
-	<copyright>Copyright (C) 2012 Matt Thomas. All rights reserved.</copyright>
-	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<copyright>Copyright (C) 2012 The Solomon R. Guggenheim Foundation. All Rights Reserved.</copyright>
 	<version>1.2</version>
 	<description>MOD_COLLECTIONS_DESC</description>
 	<files>
@@ -64,6 +63,11 @@
 		       default="205"
 		       label="MOD_COLLECTIONS_IMAGE_MAX_HEIGHT_LABEL"
 		       description="MOD_COLLECTIONS_IMAGE_MAX_HEIGHT_DESC"/>
+		<param name="itemsPerLoop"
+		       type="text"
+		       default="4"
+		       label="MOD_COLLECTIONS_ITEMS_PER_LOOP_LABEL"
+		       description="MOD_COLLECTIONS_ITEMS_PER_LOOP_DESC"/>
 	</params>
 	<params group="other">
 		<param name="userAgent"

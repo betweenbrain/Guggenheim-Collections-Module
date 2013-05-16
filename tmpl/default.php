@@ -3,68 +3,54 @@
 /**
  * File       default.php
  * Created    12/31/12 11:59 AM
- * Author     Matt Thomas
- * Website    http://betweenbrain.com
- * Email      matt@betweenbrain.com
- * Support    https://github.com/betweenbrain/
- * Copyright  Copyright (C) 2012 betweenbrain llc. All Rights Reserved.
- * License    GNU GPL v3 or later
+ * Author     Matt Thomas | matt@betweenbrain.com | http://betweenbrain.com
+ * Copyright  Copyright (C) 2012 The Solomon R. Guggenheim Foundation. All Rights Reserved.
  */
 
 if ($items) : ?>
-<div class="collections<?php echo $moduleclass_sfx ?>">
-	<div class="sd-strip-controls-container">
-		<div class="sd-strip-controls">
-			<img class="control sd-forward" src="http://www.guggenheim.org/templates/guggenheim_ubs_map_portal/images/right-arrow.png" alt="Forward" />
-			<img class="control sd-back" src="http://www.guggenheim.org/templates/guggenheim_ubs_map_portal/images/left-arrow.png" alt="Back" />
+	<div data-looper="go" id="looper<?php echo $module->id; ?>" data-interval="false" class="looper side slide collections<?php echo $moduleclass_sfx ?>">
+		<div class="nav">
+			<a data-looper="prev" class="prev" href="#looper<?php echo $module->id; ?>">Previous</a>
+			<a data-looper="next" class="next" href="#looper<?php echo $module->id; ?>">Next</a>
 		</div>
-		<div class="sd-strip-container">
-			<ul class="sd-strip">
-				<?php foreach ($items as $item) : ?>
+		<ul class="looper-inner">
+			<?php foreach ($items as $i => $item) : ?>
+				<?php echo $collection->loopStart($i) ?>
 				<li>
-
 					<?php if (isset($item['link'])) : ?>
-						<a href="<?php echo $item['link'] ?>">
+					<a href="<?php echo $item['link'] ?>">
 						<?php endif ?>
-
-					<?php if (isset($item['media'])) : ?>
-					<img src="<?php echo $item['media'] ?>" width="<?php echo $item['width'] ?>" height="<?php echo $item['height'] ?>">
-					<?php endif ?>
-
-					<?php if (isset($item['link'])) : ?>
-						</a>
+						<?php if (isset($item['media'])) : ?>
+							<img src="<?php echo $item['media'] ?>" width="<?php echo $item['width'] ?>" height="<?php echo $item['height'] ?>">
 						<?php endif ?>
+						<?php if (isset($item['link'])) : ?>
+					</a>
+				<?php endif ?>
 
 					<div class="content">
 						<p class="primary"><?php echo $item['title'] ?></p>
-
 						<?php if (isset($item['name'])) : ?>
-						<p>
-							<?php if (isset($item['bioUrl'])) : ?>
+							<p>
+								<?php if (isset($item['bioUrl'])) : ?>
 								<a href="<?php echo $item['bioUrl'] ?>">
-								<? endif ?>
-
-							<?php echo $item['name'] ?>
-
-							<?php if (isset($item['bioUrl'])) : ?>
+									<? endif ?>
+									<?php echo $item['name'] ?>
+									<?php if (isset($item['bioUrl'])) : ?>
 								</a>
-								<? endif ?>
-						</p>
+							<? endif ?>
+							</p>
 						<?php endif ?>
-
 						<?php if (isset($item['date'])) : ?>
-						<p class="when"><?php echo $item['date'] ?></p>
+							<p class="when"><?php echo $item['date'] ?></p>
 						<?php endif ?>
-
 						<?php if (isset($item['link'])) : ?>
-						<a class="more small" href="<?php echo $item['link'] ?>">More</a>
+							<a class="more small" href="<?php echo $item['link'] ?>">More</a>
 						<?php endif ?>
 					</div>
 				</li>
-				<?php endforeach ?>
-			</ul>
-		</div>
+				<?php echo $collection->loopEnd($i, $last) ?>
+			<?php endforeach ?>
+		</ul>
 	</div>
-</div>
 <?php endif ?>
 
